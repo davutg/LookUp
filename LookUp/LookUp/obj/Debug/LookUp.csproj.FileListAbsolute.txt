@@ -64,6 +64,5 @@ C:\Users\davutg\Source\Repos\LookUp\LookUp\LookUp\bin\Microsoft.Owin.Security.OA
 C:\Users\davutg\Source\Repos\LookUp\LookUp\LookUp\bin\Microsoft.Owin.Security.Google.xml
 C:\Users\davutg\Source\Repos\LookUp\LookUp\LookUp\bin\Microsoft.Owin.Security.Twitter.xml
 C:\Users\davutg\Source\Repos\LookUp\LookUp\LookUp\bin\Microsoft.Owin.Security.MicrosoftAccount.xml
-C:\Users\davutg\Source\Repos\LookUp\LookUp\LookUp\obj\Debug\LookUp.csprojResolveAssemblyReference.cache
 C:\Users\davutg\Source\Repos\LookUp\LookUp\LookUp\obj\Debug\LookUp.dll
 C:\Users\davutg\Source\Repos\LookUp\LookUp\LookUp\obj\Debug\LookUp.pdb
