@@ -3,6 +3,10 @@
     background-color:#aac5dc;
 }
 
+ul.menu li {
+    list-style:square;
+}
+
 #sidebar {
     overflow:hidden;
     width:250px;
