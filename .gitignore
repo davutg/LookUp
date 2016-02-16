@@ -1,4 +1,5 @@
 *.pdb
+LookUp/.vs/**
 LookUp/.vs/LookUp/v14/.suo
 LookUp/LookUp/bin/
 LookUp/LookUp/obj/
