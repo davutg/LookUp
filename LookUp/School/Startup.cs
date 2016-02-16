@@ -25,8 +25,12 @@ namespace School
             app.UseStaticFiles();            
             //app.Run(async (context) =>
             //{
-            //    await context.Response.WriteAsync($"Hello World! :{context.Request.Path}");
+            //    await context.Response.WriteAsync($"Hello World!:{context.Request.Path}");               
             //});
+            
+            
+                
+                
         }
 
         // Entry point for the application.
