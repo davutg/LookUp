@@ -1,4 +1,5 @@
 LookUp/.vs/LookUp/v14/.suo
-LookUp/LookUp/bin/Microsoft.Web.Infrastructure.dll
-LookUp/LookUp/obj/Debug/DesignTimeResolveAssemblyReferencesInput.cache
-LookUp/LookUp/obj/Debug/LookUp.csprojResolveAssemblyReference.cache
+LookUp/LookUp/bin/
+LookUp/LookUp/obj/
+LookUp/LookUp/packages
+

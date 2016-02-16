@@ -1,0 +1,37 @@
+﻿body {
+    background-color:#eee;
+}
+
+#sidebar {
+
+}
+
+
+#sidebar img{
+    display:block;
+}
+
+#footer {
+background-color:black;
+color:white;
+}
+
+#sidebar .headshot {
+    max-width:64px;
+    max-height:64px;
+}
+
+
+
+#sidebar .menu .active {
+ font-weight:bold;  
+}
+
+label{
+display:block;
+}
+
+input[type=password], input[type=text] {
+display:block;
+width:150px;
+}
