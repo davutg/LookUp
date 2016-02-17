@@ -50,6 +50,19 @@ $(document).ready(
         alert(me.text());
     });
 
+    var $sidebarAndWrapper = $("#sidebar,#wrapper");
+
+    var toggleButton = $("#toggleButton");
+    toggleButton.on("click", function () {
+
+        $sidebarAndWrapper.toggleClass("toggle-sidebar");
+        if ($sidebarAndWrapper.hasClass("toggle-sidebar")) {
+            $(this).text("Show");
+        } else {
+            $(this).text("Hide");
+        }
+    });
+
 })("element is null"));
 
 
