@@ -65,7 +65,7 @@ label{
     display:block;
 }
 
-input[type=password], input[type=text] {
+input[type=password], input[type=text], input[type=textarea]  {
     display:block;
     width:150px;
 }
@@ -86,7 +86,7 @@ input[type=password], input[type=text] {
     -moz-transition: margin-left ease .5s;
     -o-transition: margin-left ease .5s;
     -webkit-transition: margin-left ease .5s;
-    transition: margin-left ease .5s;
+    transition: margin-left ease-in .5s;
 }
 
 #sidebar.toggle-sidebar {

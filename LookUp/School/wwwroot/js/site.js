@@ -1,5 +1,11 @@
 ﻿/*Avoid of naming collusion , anonym method works outside of global scope*/
 
+
+$.fn.multiline = function (txt) {   
+    this.html(this.html().replace(/\n/g, '<br/>'));
+    return this;
+}
+
 $(document).ready(
 (function (nullMessage) {
     /* Without JQuery=$
@@ -17,14 +23,15 @@ $(document).ready(
     var element = $("#userName");
     if (element != null) {
         element.text("Welcome \n" + element.text() + " !");
-        element.html(element.html().replace(/\n/g, '<div/>')); //.html('some multiline\ntext').wrap.("<pre />");
+        element.multiline(element.text());
+        //element.html(element.html().replace(/\n/g, '<div/>')); //.html('some multiline\ntext').wrap.("<pre />");
 
         element.on("mouseover", function () {
             element.css('color', 'red');
         });
 
         element.on("mouseleave", function () {
-            element.css('color', '');
+            element.css('color', '');            
         });
     } else {
         alert(nullMessage);
@@ -66,8 +73,6 @@ $(document).ready(
 })("element is null"));
 
 
-$.fn.multiline = function (txt) {
-    this.text(txt);
-    this.html(this.html().replace(/\n/g, '<br/>'));
-    return this;
-}
+(function (mesaj) {
+    console.info('Application started!');
+})('calistir');
