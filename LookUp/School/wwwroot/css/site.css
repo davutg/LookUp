@@ -83,6 +83,7 @@ input[type=password], input[type=text], input[type=textarea]  {
 
 #wrapper.toggle-sidebar {
     margin-left: 0;
+    padding:5px 0 0 0;
     -moz-transition: margin-left ease .5s;
     -o-transition: margin-left ease .5s;
     -webkit-transition: margin-left ease .5s;
@@ -90,6 +91,7 @@ input[type=password], input[type=text], input[type=textarea]  {
 }
 
 #sidebar.toggle-sidebar {
+    padding: 5px 0 0 0;
     left: -250px;
     -moz-transition: left ease .5s;
     -o-transition: left ease .5s;
