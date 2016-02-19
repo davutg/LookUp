@@ -1,3 +1,4 @@
+project.lock.json
 *.pdb
 LookUp/.vs/**
 LookUp/.vs/LookUp/v14/.suo
