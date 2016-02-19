@@ -1,14 +1,45 @@
-﻿@{ 
+﻿@model School.ViewModel.ContactViewModel
+@{ 
     ViewBag.Title = "Contact";
 }
+@section Scripts
+{
+    <script type="text/javascript" src="~/lib/jquery-validation/dist/jquery.validate.min.js"></script>
+    <script type="text/javascript" src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.min.js"></script>
+}
+<h2>Contact</h2>
+<form method="post" id="contactForm" style="margin: 0; padding: 0;">
+    <div asp-validation-summary="ValidationSummary.ModelOnly"></div>
 
-Contact 
-<form>
-    <label for="Name">Name</label>
-    <input type="text" name="Name" id="Name"/>
-    <label for="surName">Surname</label>
-    <input type="text" name="surName" id="surName"/>
-    <label for="msg">Message</label>
-    <textarea name="msg" id="msg" cols="40" rows="4"></textarea>
+    <label asp-for="Name">Name</label>
+    <input asp-for="Name" />
+    <span asp-validation-for="Name"></span>
+
+
+    <label asp-for="SurName">Surname</label>
+    <input asp-for="SurName" />
+    <span asp-validation-for="SurName" style="display:inline"></span>
+
+    <label asp-for="Email">Email</label>
+    <input type="email" asp-for="Email" />
+    <span asp-validation-for="Email"></span>
+
+    <label asp-for="Message">Message</label>
+    <textarea asp-for="Message" cols="80" rows="4"></textarea>
+    <span asp-validation-for="Message" style="display:block"></span>
+
     <div><input type="submit" value="Send Message" /></div>
+    @if (ViewBag.Message != null)
+    {
+        <div>@ViewBag.Message</div>
+    }
+    else
+    {
+        @if (ViewBag.IsPost)
+        {
+            <script type="text/javascript">
+                alert("An Error occured during mail sent !!!");
+            </script>
+        }
+    }
 </form>
