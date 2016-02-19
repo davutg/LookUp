@@ -54,7 +54,7 @@ $(document).ready(
     var menuItems = $("ul.menu li a");
     menuItems.on("click", function () {
         var me = $(this);
-        alert(me.text());
+        console.info(me.text()+" page is navigated");
     });
 
     var $sidebarAndWrapper = $("#sidebar,#wrapper");
@@ -74,5 +74,5 @@ $(document).ready(
 
 
 (function (mesaj) {
-    console.info('Application started!');
+    console.info('Page refreshed!');
 })('calistir');
