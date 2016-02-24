@@ -38,18 +38,18 @@ $(document).ready(
     }
 
     var main = $("#main");
-    if (main != null) {
-        main.on("mouseenter", function () {
-            //main.style="color:red;"; ////doesn't work !!!
-            main.css('background-color','#888');
-        });
-        main.on("mouseleave", function () {
-            main.css('background-color', '');
-        });
-    }
-    else {
-        alert(nullMessage);
-    }
+    //if (main != null) {
+    //    main.on("mouseenter", function () {
+    //        //main.style="color:red;"; ////doesn't work !!!
+    //        main.css('background-color','#888');
+    //    });
+    //    main.on("mouseleave", function () {
+    //        main.css('background-color', '');
+    //    });
+    //}
+    //else {
+    //    alert(nullMessage);
+    //}
 
     var menuItems = $("ul.menu li a");
     menuItems.on("click", function () {
@@ -59,14 +59,23 @@ $(document).ready(
 
     var $sidebarAndWrapper = $("#sidebar,#wrapper");
 
-    var toggleButton = $("#toggleButton");
+    var toggleButton = $("#toggleButton")
+    var icon = $("#toggleButton i.fa")
     toggleButton.on("click", function () {
 
         $sidebarAndWrapper.toggleClass("toggle-sidebar");
-        if ($sidebarAndWrapper.hasClass("toggle-sidebar")) {
-            $(this).text("Show");
-        } else {
-            $(this).text("Hide");
+        if ($sidebarAndWrapper.hasClass("toggle-sidebar"))
+        {
+            icon.removeClass("fa-angle-left")
+            icon.addClass("fa-angle-right")
+            //$(this).text("Show");
+        }
+
+        else
+        {
+            icon.addClass("fa-angle-left")
+            icon.removeClass("fa-angle-right")
+            //$(this).text("Hide");
         }
     });
 

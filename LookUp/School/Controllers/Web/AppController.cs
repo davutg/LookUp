@@ -33,6 +33,12 @@ namespace School.Controllers.Web
             return View();
         }
 
+        public IActionResult TestPage()
+        {
+            return View();
+
+        }
+
         [HttpPost]
         public IActionResult Contact(ContactViewModel vm)
         {

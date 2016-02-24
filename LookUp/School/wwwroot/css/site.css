@@ -1,7 +1,26 @@
-﻿body {
+﻿/*body {
     margin:0;
     background-color:#aac5dc;
+}*/
+
+
+
+
+
+/*input[type=password], input[type=text], input[type=textarea]  {
+    display:block;
+    width:150px;
 }
+
+    input[type=password], input[type=text], input[type=textarea] span {
+    display:inline;
+    }*/
+
+
+label{
+    display:block;
+}
+
 
 ul.menu li {
     list-style:square;
@@ -12,7 +31,7 @@ ul.menu li {
     width: 250px;
     position: fixed;
     height: 100%;
-    background-color: #eee;
+    background-color: #12151C;
     padding: 5px 0 0 5px;
     border: 0;
     margin: 0;
@@ -28,7 +47,7 @@ ul.menu li {
     display:block;
 }
 
-#footer {
+/*#footer {
 background-color:black;
 color:white;
 padding:5px 3px;
@@ -36,7 +55,7 @@ border:0;
 position:fixed;
 bottom:0;
 width:100%;
-}
+}*/
 
 html {
 margin:0px;
@@ -51,11 +70,11 @@ margin:0px;
     margin:0;
 }
 
-#main {
+/*#main {
     margin-top:0; 
     margin-left:5px;
     width:100%;       
-}
+}*/
 
 
 #sidebar .menu .active {
@@ -67,25 +86,14 @@ margin:0px;
     display:inline-table;
 }
 
-label{
-    display:block;
-}
 
-input[type=password], input[type=text], input[type=textarea]  {
-    display:block;
-    width:150px;
-}
-
-    input[type=password], input[type=text], input[type=textarea] span {
-    display:inline;
-    }
 
 #wrapper {
-    position: fixed;
+    /*position: fixed;*/
     margin-left: 250px;
     margin-top: 0;
-    padding: 5px;
-    width:100%;
+    padding: 0px;
+    width:auto;
     -moz-transition: margin-left ease .5s;
     -o-transition: margin-left ease .5s;
     -webkit-transition: margin-left ease .5s;

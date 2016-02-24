@@ -1,27 +1,59 @@
 ﻿<!DOCTYPE html>
 <html title="School-@ViewBag.Title">
 <head>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.css" /> @*changed : Bootstrap*@
+    <link rel="stylesheet" href="~/lib/bootswatch/yeti/bootstrap.min.css" /> @*changed : Bootswatch Template - override some of the bootstrap css classes *@
+    <link rel="stylesheet" href="~/lib/font-awesome/css/font-awesome.min.css" /> @*changed : font-awsome*@
     <link rel="stylesheet" href="~/css/site.css" />
+    
 </head>
 <body>
     <div id="sidebar">
         <img src="~/img/photo.png" alt="headshot" class="headshot" />
         <span id="userName">Dave John</span>
-        <ul class="menu">
+        <ul class="nav"> @*changed : Bootstrap nav from menu*@ 
             <li class="active"><a asp-controller="App" asp-action="Index">Home</a></li>
             <li><a asp-controller="App" asp-action="About">About</a></li>
             <li><a asp-controller="App" asp-action="Contact">Contact</a></li>
+            <li><a asp-controller="App" asp-action="TestPage">Bootstrap Templates</a></li> @*changed : Bootstrap*@
+
         </ul>
     </div>
     <div id="wrapper">
-        <div>
-            <button id="toggleButton" type="button">Hide</button>
-        </div>
-        <div id="main">
+           <nav class="navbar navbar-inverse"> @*changed : Bootstrap - adding navbar*@
+            <div class="container-fluid" style="margin-left:0px;padding-left:0px">
+                <ul class="nav navbar-nav navbar-left">
+                    <li>
+                        <button id="toggleButton" class="btn btn-primary btn-sm">
+                            <i class="fa fa-angle-left fa-2x"> </i>
+                        </button> @*changed : Bootstrap*@
+                    </li>
+                 </ul>
+                <a asp-controller="App" asp-action="Index" class="navbar-brand"> Home</a>
+               <ul class="nav navbar-nav navbar-right">
+                  <li>
+                      <a href="#" class="btn btn-sm btn-info">
+                          <i class="fa fa-save"></i> Save
+                      </a>
+                  </li>
+                   <li>
+                       <a href="#" class="btn btn-sm btn-info">
+                           <i class="fa fa-print"></i> Print
+                       </a>
+                   </li>
+                </ul>
+             </div>
+         </nav>
+        <div id="main" class="container-fluid">
+           
         @RenderBody()
         </div>
-        <div id="footer">
-            All rights are reserved!
+        <div id="footer" class="container-fluid">
+
+            @*changed : Bootstrap*@
+            <div class="navbar navbar-default navbar-fixed-bottom">
+                <h4 class="text-center text-info">&copy; All rights are reserved!</h4>
+            </div>
         </div>
     </div>
     <script src="~/lib/jquery/dist/jquery.js" type="text/javascript"></script>
