@@ -66,15 +66,15 @@ $(document).ready(
         $sidebarAndWrapper.toggleClass("toggle-sidebar");
         if ($sidebarAndWrapper.hasClass("toggle-sidebar"))
         {
-            icon.removeClass("fa-angle-left")
-            icon.addClass("fa-angle-right")
+            icon.removeClass("fa-angle-double-left")
+            icon.addClass("fa-angle-double-right")
             //$(this).text("Show");
         }
 
         else
         {
-            icon.addClass("fa-angle-left")
-            icon.removeClass("fa-angle-right")
+            icon.addClass("fa-angle-double-left")
+            icon.removeClass("fa-angle-double-right")
             //$(this).text("Hide");
         }
     });
