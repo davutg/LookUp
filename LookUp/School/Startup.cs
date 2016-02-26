@@ -12,6 +12,7 @@ using Microsoft.Extensions.PlatformAbstractions;
 using Microsoft.Data.Entity;
 using School.Model;
 using School.DB;
+using Microsoft.Extensions.Logging;
 
 namespace School
 {
@@ -53,11 +54,15 @@ namespace School
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, SeedDataService seederService)
+        public void Configure(IApplicationBuilder app, SeedDataService seederService,ILoggerFactory loggerFactory)
         {
             //app.UseIISPlatformHandler();            
             //app.UseDefaultFiles();
-            
+            loggerFactory.AddDebug((str,level)=>
+            {
+                return (level == LogLevel.Critical) || (level == LogLevel.Error);
+            });
+
             app.UseStaticFiles();
             app.UseMvc(config=>
             {
