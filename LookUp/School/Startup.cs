@@ -11,6 +11,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.PlatformAbstractions;
 using Microsoft.Data.Entity;
 using School.Model;
+using School.DB;
 
 namespace School
 {
@@ -36,6 +37,8 @@ namespace School
 
             services.AddEntityFramework().AddSqlite().AddDbContext<WorldContext>();
             services.AddTransient<SeedDataService>();
+            services.AddScoped<IWorldRepository, WorldRepository>();
+
             using (var db = new WorldContext())
             {
                 db.Database.EnsureCreated();
