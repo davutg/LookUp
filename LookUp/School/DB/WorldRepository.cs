@@ -11,9 +11,9 @@ namespace School.DB
     public class WorldRepository : IWorldRepository
     {
         private WorldContext _context;
-        private Logger<WorldRepository> _logger;
+        private ILogger<WorldRepository> _logger;
 
-        public WorldRepository(WorldContext context,Logger<WorldRepository> logger)
+        public WorldRepository(WorldContext context,ILogger<WorldRepository> logger)
         {
             _context = context;
             _logger = logger;
