@@ -9,6 +9,8 @@ using Microsoft.Extensions.DependencyInjection;
 using School.Services;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.PlatformAbstractions;
+using Microsoft.Data.Entity;
+using School.Model;
 
 namespace School
 {
@@ -21,7 +23,8 @@ namespace School
             var builder = new ConfigurationBuilder()                
                 .SetBasePath(env.ApplicationBasePath)
                 .AddJsonFile("config.json")
-                .AddEnvironmentVariables();
+                .AddEnvironmentVariables()
+                ;
 
             AppConfiguration= builder.Build();
         }
@@ -30,6 +33,14 @@ namespace School
         // For more information on how to configure your application, visit http://go.microsoft.com/fwlink/?LinkID=398940
         public void ConfigureServices(IServiceCollection services)
         {
+
+            services.AddEntityFramework().AddSqlite().AddDbContext<WorldContext>();
+
+            using (var db = new WorldContext())
+            {
+                db.Database.EnsureCreated();
+            }
+
             services.AddMvc();
 #if DEBUG
             services.AddScoped<IMailService, MockMailService>();
