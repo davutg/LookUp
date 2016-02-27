@@ -1,4 +1,5 @@
 project.lock.json
+[Dd]ata/*.db
 *.pdb
 LookUp/.vs/**
 LookUp/.vs/LookUp/v14/.suo

@@ -1,20 +1,28 @@
-﻿@{ 
+﻿@model IEnumerable<School.Model.Trip>
+@{
     ViewBag.Title = "Home Page";
 }
-<h2>The World</h2>
-            This will be a funny web site
-
-<form>
-    <div>
-        <div>
-            <label>Date</label>
-            <input />
-        </div>
-        <div>
-            <label>Location</label>
-            <input>
-        </div>
+    <div class="col-md-6">
+        <h2>The World</h2>
+        This will be a funny web site
+        <form>
+            <div>
+                <label>Date</label>
+                <input />
+            </div>
+            <div>
+                <label>Location</label>
+                <input>
+            </div>
+            <input type="button" class="btn btn-primary btn-sm" value="Add" />
+        </form>
     </div>
-    <input type="button" class="btn btn-primary btn-sm"  value="Add" />
 
-</form>
+    <div class="col-md-6">
+        <ol>
+            @foreach (School.Model.Trip trip in Model)
+            {
+                <li>@trip.Name (@trip.Created)</li>
+            }
+        </ol>
+    </div>

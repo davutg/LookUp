@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNet.Mvc;
+using School.DB;
 using School.Services;
 using School.ViewModel;
 using System;
@@ -12,14 +13,18 @@ namespace School.Controllers.Web
     public class AppController:Controller
     {
         IMailService _mailService;
-        public AppController(IMailService mailService)
+        IWorldRepository _repository;
+
+        public AppController(IMailService mailService,IWorldRepository repo)
         {
             _mailService = mailService;
+            _repository = repo;
         }
 
         public IActionResult Index()
         {
-            return View();
+            var trips=_repository.GetAllTripsWithStops();
+            return View(trips);
         }
 
         public IActionResult About()

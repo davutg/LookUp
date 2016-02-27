@@ -11,6 +11,8 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.PlatformAbstractions;
 using Microsoft.Data.Entity;
 using School.Model;
+using School.DB;
+using Microsoft.Extensions.Logging;
 
 namespace School
 {
@@ -35,6 +37,8 @@ namespace School
         {
 
             services.AddEntityFramework().AddSqlite().AddDbContext<WorldContext>();
+            services.AddTransient<SeedDataService>();
+            services.AddScoped<IWorldRepository, WorldRepository>();
 
             using (var db = new WorldContext())
             {
@@ -50,11 +54,15 @@ namespace School
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app)
+        public void Configure(IApplicationBuilder app, SeedDataService seederService,ILoggerFactory loggerFactory)
         {
             //app.UseIISPlatformHandler();            
             //app.UseDefaultFiles();
-            
+            loggerFactory.AddDebug((str,level)=>
+            {
+                return (level == LogLevel.Critical) || (level == LogLevel.Error);
+            });
+
             app.UseStaticFiles();
             app.UseMvc(config=>
             {
@@ -63,15 +71,17 @@ namespace School
                     name: "Default",
                     template: "{controller}/{action}/{id?}",
                     defaults: new { controller = "App", action = "Index" });
-            });      
+            });
             //app.Run(async (context) =>
             //{
             //    await context.Response.WriteAsync($"Hello World!:{context.Request.Path}");               
             //});
-            
-            
-                
-                
+
+            seederService.EnsureSeedData();
+
+
+
+
         }
 
         // Entry point for the application.
