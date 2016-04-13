@@ -19,6 +19,9 @@ LookUp/LookUp/packages
 *.userosscache
 *.sln.docstates
 
+#database files
+*.db
+
 # User-specific files (MonoDevelop/Xamarin Studio)
 *.userprefs
 
@@ -248,3 +251,4 @@ _Pvt_Extensions
 .fake/
 
 
+/.gitattributes

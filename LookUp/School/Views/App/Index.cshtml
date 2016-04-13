@@ -2,29 +2,39 @@
 @{
     ViewBag.Title = "Home Page";
 }
-    <div class="col-md-4 col-sm-6 ">
+    <div class="col-md-6">
         <h2>The World</h2>
         This will be a funny web site
         <form>
-            <div class="form-group">
+            <div>
                 <label>Date</label>
-                <input class="form-control" />
+                <input />
             </div>
-            <div class="form-group">
+            <div>
                 <label>Location</label>
-                <input class="form-control">
+                <input>
             </div>
-
             <input type="button" class="btn btn-primary btn-sm" value="Add" />
         </form>
     </div>
 
-    <div class="col-md-6 col-md-offset-2">
-        <h2>Trip</h2>
+    <div class="col-md-6">
+        <h2>The Map</h2>
+        This will be a wonderful journey !!!                
         <ol>
             @foreach (School.Model.Trip trip in Model)
-            {
-                <li>@trip.Name (@trip.Created)</li>
+        {
+                <li>
+                    @trip.Name (@trip.Created)
+                    <ul>
+                        @foreach (var stop in trip.Destinations)
+                        {                            
+                                <li>
+                                    @stop.Arrival.ToShortTimeString()-<a href="https://www.google.com.tr/?q=Goreme&gws_rd=ssl#safe=active&q=@stop.Name%20Turkey">@stop.Name</a>
+                                </li>                            
+                        }
+                    </ul>
+                </li>
             }
-        </ol>
+        </ol>       
     </div>
