@@ -2,23 +2,25 @@
 @{
     ViewBag.Title = "Home Page";
 }
-    <div class="col-md-6">
+    <div class="col-md-4 col-sm-6 ">
         <h2>The World</h2>
         This will be a funny web site
         <form>
-            <div>
+            <div class="form-group">
                 <label>Date</label>
-                <input />
+                <input class="form-control" />
             </div>
-            <div>
+            <div class="form-group">
                 <label>Location</label>
-                <input>
+                <input class="form-control">
             </div>
+
             <input type="button" class="btn btn-primary btn-sm" value="Add" />
         </form>
     </div>
 
-    <div class="col-md-6">
+    <div class="col-md-6 col-md-offset-2">
+        <h2>Trip</h2>
         <ol>
             @foreach (School.Model.Trip trip in Model)
             {
