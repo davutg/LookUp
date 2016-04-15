@@ -26,6 +26,7 @@
   "frameworks": {
     "dnx451": {
       "dependencies": {
+        "Microsoft.Net.Http": "2.2.22"
       }
     },
     "dnxcore50": { }
