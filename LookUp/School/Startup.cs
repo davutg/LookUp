@@ -13,6 +13,7 @@ using Microsoft.Data.Entity;
 using School.Model;
 using School.DB;
 using Microsoft.Extensions.Logging;
+using School.ViewModel;
 
 namespace School
 {
@@ -64,6 +65,10 @@ namespace School
             });
 
             app.UseStaticFiles();
+            AutoMapper.Mapper.Initialize((config) =>
+            {
+                config.CreateMap<Trip, TripViewModel>().ReverseMap();
+            });
             app.UseMvc(config=>
             {
                 var defaults = new { controller = "App", action = "Index" };
