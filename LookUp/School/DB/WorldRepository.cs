@@ -43,5 +43,30 @@ namespace School.DB
             return _context.Stops;
         }
 
+        public void SaveTrip(Trip tripObject)
+        {
+            _context.Add(tripObject);
+        }
+
+        public bool SaveAll()
+        {
+            return _context.SaveChanges() > 0;
+        }
+
+        public void DeleteTripById(int id)
+        {
+            _context.Remove(_context.Trips.Where(w => w.Id == id).FirstOrDefault());
+        }
+
+        public void UpdateTrip(Trip trip)
+        {
+            _context.Update(trip);
+        }
+
+        public Trip GetTripWithStopsByTripId(int tripId)
+        {
+            var trip = _context.Trips.Where(w => w.Id == tripId).Include(i => i.Destinations).FirstOrDefault();
+            return trip;
+        }
     }
 }

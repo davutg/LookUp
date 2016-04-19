@@ -37,13 +37,20 @@ namespace School.Controllers.API
 
         // GET api/values/5
         [HttpGet("{id}")]
-        public string Get(int id)
+        public JsonResult Get(int id)
         {
-            return "value";
+            return Json(_repo.GetTripWithStopsByTripId(id));            
         }
 
         public String val { get; set; }
         
+        public IMapper Mapper
+        {
+            get {
+                return AutoMapper.Mapper.Instance;
+            }
+        }
+
         /*   [FromBody]
             This is how [FromBody] attrib. works. You can only bind one element with this attribute. 
             Connection: keep-alive
@@ -73,11 +80,20 @@ namespace School.Controllers.API
             }
             else {
                 try
-                {                   
+                {
+                    
                     Trip tripObject = AutoMapper.Mapper.Map<Trip>(val);
-                    //_repo.SaveTrip(tripObject);
-                    Request.HttpContext.Response.StatusCode = Microsoft.AspNet.Http.StatusCodes.Status201Created;
-                    return new JsonResult("Success!"); ;
+                    _repo.SaveTrip(tripObject);
+                    if (_repo.SaveAll())
+                    {
+                        Request.HttpContext.Response.StatusCode = Microsoft.AspNet.Http.StatusCodes.Status201Created;
+                        return Json(Mapper.Map<TripViewModel>(tripObject));
+                    }
+                    else
+                    {
+                        Response.StatusCode =(int)HttpStatusCode.InternalServerError;
+                        return Json(val);
+                    }
                 }
                 catch(Exception ex) {
                     _logger.LogError("Failid to save trip", ex);
@@ -90,14 +106,37 @@ namespace School.Controllers.API
 
         // PUT api/values/5
         [HttpPut("{id}")]
-        public void Put(int id, [FromBody]string value)
+        public JsonResult Put(int id, [FromBody]TripViewModel tripVM)
         {
+            var trip=Mapper.Map<Trip>(tripVM);
+            _repo.UpdateTrip(trip);
+            if (_repo.SaveAll())
+            {
+                Response.StatusCode = (int)HttpStatusCode.OK;
+                return Json(tripVM);
+            }
+            else
+            {
+                Response.StatusCode = (int)HttpStatusCode.BadRequest;
+                return Json(tripVM);
+            }
         }
 
         // DELETE api/values/5
         [HttpDelete("{id}")]
-        public void Delete(int id)
+        public JsonResult Delete(int id)
         {
+            _repo.DeleteTripById(id);
+            if (_repo.SaveAll())
+            {
+                Response.StatusCode = Microsoft.AspNet.Http.StatusCodes.Status204NoContent;
+                return Json(true);
+            }
+            else
+            {
+                Response.StatusCode = (int)HttpStatusCode.InternalServerError;
+                return Json(false);
+            }
         }
     }
 }

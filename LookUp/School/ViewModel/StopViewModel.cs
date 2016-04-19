@@ -6,17 +6,15 @@ using System.Threading.Tasks;
 
 namespace School.ViewModel
 {
-    public class TripViewModel
+    public class StopViewModel
     {
         public int Id { get; set; }
-
         [Required]
-        [MinLength(3,ErrorMessage ="Minimum 3 chars")]
-        [MaxLength(255,ErrorMessage ="Maximum length exceeded")]
+        [MaxLength(120)]
         public String Name { get; set; }
-
-        public DateTime Created { get; set; } = DateTime.UtcNow;
-
-        public IEnumerable<StopViewModel> Stops { get; set; }
+        public double Longitude { get; set; }
+        public double Latitude { get; set; }
+       
+        public DateTime Arrival { get; set; }
     }
 }
