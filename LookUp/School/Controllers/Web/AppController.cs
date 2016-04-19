@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNet.Mvc;
+﻿using Microsoft.AspNet.Authorization;
+using Microsoft.AspNet.Mvc;
 using School.DB;
 using School.Services;
 using School.ViewModel;
@@ -23,7 +24,13 @@ namespace School.Controllers.Web
 
         public IActionResult Index()
         {
-            var trips=_repository.GetAllTripsWithStops();
+            return View();
+        }
+
+        [Authorize]
+        public IActionResult Trips()
+        {
+            var trips = _repository.GetAllTripsWithStops();
             return View(trips);
         }
 

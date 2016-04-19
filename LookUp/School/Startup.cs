@@ -14,6 +14,8 @@ using School.Model;
 using School.DB;
 using Microsoft.Extensions.Logging;
 using School.ViewModel;
+using Newtonsoft.Json.Serialization;
+using Microsoft.AspNet.Identity.EntityFramework;
 
 namespace School
 {
@@ -46,7 +48,22 @@ namespace School
                 db.Database.EnsureCreated();
             }
 
-            services.AddMvc();
+            services.AddMvc().AddJsonOptions(opt=>
+            {
+                opt.SerializerSettings.ContractResolver = new CamelCasePropertyNamesContractResolver();
+            });
+
+            services.AddIdentity<WorldUser, IdentityRole>(config =>
+             {
+                 config.User.RequireUniqueEmail = true;
+                 config.Password.RequiredLength = 1;
+                 config.Cookies.ApplicationCookie.LoginPath = "/Auth/Login";
+             }).AddEntityFrameworkStores<WorldContext>();
+
+            //services.ConfigureCookieAuthentication(config =>
+            //{
+            //    config.LoginPath = "/Auth/Login";
+            //});
 #if DEBUG
             services.AddScoped<IMailService, MockMailService>();
 #else
@@ -55,7 +72,7 @@ namespace School
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, SeedDataService seederService,ILoggerFactory loggerFactory)
+        public async void Configure(IApplicationBuilder app, SeedDataService seederService,ILoggerFactory loggerFactory)
         {
             //app.UseIISPlatformHandler();            
             //app.UseDefaultFiles();
@@ -65,6 +82,10 @@ namespace School
             });
 
             app.UseStaticFiles();
+
+            //Order Matters !!!
+            app.UseIdentity();
+
             AutoMapper.Mapper.Initialize((config) =>
             {
                 config.CreateMap<Trip, TripViewModel>().ReverseMap();
@@ -78,15 +99,14 @@ namespace School
                     template: "{controller}/{action}/{id?}",
                     defaults: new { controller = "App", action = "Index" });
             });
+
+           
             //app.Run(async (context) =>
             //{
             //    await context.Response.WriteAsync($"Hello World!:{context.Request.Path}");               
             //});
 
-            seederService.EnsureSeedData();
-
-
-
+            await seederService.EnsureSeedDataAsync();
 
         }
 

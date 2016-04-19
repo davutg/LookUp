@@ -1,4 +1,5 @@
-﻿using School.Model;
+﻿using Microsoft.AspNet.Identity;
+using School.Model;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,13 +10,26 @@ namespace School.Services
     public class SeedDataService
     {
         private WorldContext _context;
-        public SeedDataService(WorldContext context)
+        private UserManager<WorldUser> _userManager;
+
+        public SeedDataService(WorldContext context, UserManager<WorldUser> userManager)
         {
             _context = context;
+            _userManager = userManager;
         }
 
-        public void EnsureSeedData()
+        public async Task EnsureSeedDataAsync()
         {
+            
+            if (await _userManager.FindByEmailAsync("davutg@acme.com") == null)
+            {
+                var user = new WorldUser()
+                {
+                    UserName = "CowBoy",
+                    Email = "CowBoy@acme.com"
+                };
+                await _userManager.CreateAsync(user, "X");
+            }
             if (!_context.Trips.Any())
             {
                 Trip t = new Trip()
@@ -29,7 +43,7 @@ namespace School.Services
                             Arrival=DateTime.UtcNow,
                             Order=1,
                             Name="Uchisar",
-                            Latitude=0.123,                        
+                            Latitude=0.123,
                             Longitude=0.321
                         },
                             new Stop() {
@@ -56,7 +70,7 @@ namespace School.Services
                     }
                 };
                 _context.Trips.Add(t);
-                _context.SaveChangesAsync();
+                await _context.SaveChangesAsync();
             }
         }
     }

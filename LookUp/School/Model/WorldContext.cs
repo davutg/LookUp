@@ -6,10 +6,11 @@ using Microsoft.Data.Entity;
 using Microsoft.Data.Sqlite;
 using System.IO;
 using System.Diagnostics;
+using Microsoft.AspNet.Identity.EntityFramework;
 
 namespace School.Model
 {
-    public class WorldContext:DbContext 
+    public class WorldContext: IdentityDbContext<WorldUser> //DbContext //dnx ef migrations add IdentityEntities
     {
         public DbSet<Trip> Trips { get; set; }
         public DbSet<Stop> Stops { get; set; }
