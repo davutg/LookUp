@@ -1,7 +1,9 @@
 ﻿using Microsoft.AspNet.Identity;
+using Microsoft.Extensions.Logging;
 using School.Model;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -10,25 +12,29 @@ namespace School.Services
     public class SeedDataService
     {
         private WorldContext _context;
+        private ILogger<SeedDataService> _logger;
         private UserManager<WorldUser> _userManager;
 
-        public SeedDataService(WorldContext context, UserManager<WorldUser> userManager)
+        public SeedDataService(WorldContext context, UserManager<WorldUser> userManager,ILogger<SeedDataService> logger)
         {
             _context = context;
             _userManager = userManager;
+            _logger = logger;
         }
 
         public async Task EnsureSeedDataAsync()
         {
             
-            if (await _userManager.FindByEmailAsync("davutg@acme.com") == null)
+            if (await _userManager.FindByEmailAsync("cowboy@acme.com") == null)
             {
                 var user = new WorldUser()
                 {
-                    UserName = "CowBoy",
-                    Email = "CowBoy@acme.com"
+                    UserName = "cowboy",
+                    Email = "cowboy@acme.com"
                 };
-                await _userManager.CreateAsync(user, "X");
+               var result= await _userManager.CreateAsync(user, "X");
+                Debug.WriteLine(result);
+                _logger.LogDebug(String.Format("Default user creation result:{0} {1}",result.Succeeded,result.Errors));
             }
             if (!_context.Trips.Any())
             {

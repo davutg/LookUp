@@ -1,7 +1,9 @@
 ﻿/*Avoid of naming collusion , anonym method works outside of global scope*/
 
 
-$.fn.multiline = function (txt) {   
+$.fn.multiline = function (txt) {
+    if (this.html() == undefined)
+        return this;
     this.html(this.html().replace(/\n/g, '<br/>'));
     return this;
 }

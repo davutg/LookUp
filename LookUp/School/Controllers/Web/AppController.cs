@@ -34,6 +34,7 @@ namespace School.Controllers.Web
             return View(trips);
         }
 
+
         public IActionResult About()
         {
             return View();

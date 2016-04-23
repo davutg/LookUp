@@ -48,7 +48,11 @@ namespace School
                 db.Database.EnsureCreated();
             }
 
-            services.AddMvc().AddJsonOptions(opt=>
+            services.AddMvc(config=>
+            {
+                ////Redirects all requests to Https version
+                //config.Filters.Add(new RequireHttpsAttribute());                
+            }).AddJsonOptions(opt=>
             {
                 opt.SerializerSettings.ContractResolver = new CamelCasePropertyNamesContractResolver();
             });
@@ -57,6 +61,9 @@ namespace School
              {
                  config.User.RequireUniqueEmail = true;
                  config.Password.RequiredLength = 1;
+                 config.Password.RequireLowercase = false;
+                 config.Password.RequireNonLetterOrDigit = false;
+                 config.Password.RequireDigit = false;
                  config.Cookies.ApplicationCookie.LoginPath = "/Auth/Login";
              }).AddEntityFrameworkStores<WorldContext>();
 
