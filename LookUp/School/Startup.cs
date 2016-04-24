@@ -16,6 +16,8 @@ using Microsoft.Extensions.Logging;
 using School.ViewModel;
 using Newtonsoft.Json.Serialization;
 using Microsoft.AspNet.Identity.EntityFramework;
+using Microsoft.AspNet.Authentication.Cookies;
+using System.Net;
 
 namespace School
 {
@@ -65,6 +67,23 @@ namespace School
                  config.Password.RequireNonLetterOrDigit = false;
                  config.Password.RequireDigit = false;
                  config.Cookies.ApplicationCookie.LoginPath = "/Auth/Login";
+                 //Not to get Login Page for API calls
+                 config.Cookies.ApplicationCookie.Events = new CookieAuthenticationEvents()
+                 {
+                     OnRedirectToLogin = context =>
+                       {
+                           if (context.Request.Path.StartsWithSegments("/api")
+                           && context.Response.StatusCode==(int)HttpStatusCode.OK                           
+                           )
+                           {
+                               context.Response.StatusCode = (int)HttpStatusCode.Unauthorized;
+                           }
+                           else {
+                               context.Response.Redirect(context.RedirectUri);
+                           }
+                           return Task.FromResult(0);
+                       }
+                 };
              }).AddEntityFrameworkStores<WorldContext>();
 
             //services.ConfigureCookieAuthentication(config =>

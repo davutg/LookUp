@@ -10,11 +10,13 @@ using School.ViewModel;
 using System.Net;
 using AutoMapper;
 using Microsoft.Extensions.Logging;
+using Microsoft.AspNet.Authorization;
 
 // For more information on enabling Web API for empty projects, visit http://go.microsoft.com/fwlink/?LinkID=397860
 
 namespace School.Controllers.API
 {
+    [Authorize]
     [Route("api/[controller]")]
     public class TripController : Controller
     {
