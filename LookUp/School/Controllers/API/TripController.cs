@@ -34,14 +34,14 @@ namespace School.Controllers.API
         public JsonResult Get()
         {
             
-            return Json(Mapper.Map <IEnumerable< TripViewModel >> (_repo.GetAllTripsWithStops()));
+            return Json(Mapper.Map <IEnumerable< TripViewModel >> (_repo.GetAllTripsWithStops(User.Identity.Name)));
         }
 
         // GET api/values/5
         [HttpGet("{id}")]
         public JsonResult Get(int id)
         {
-            return Json(_repo.GetTripWithStopsByTripId(id));            
+            return Json(_repo.GetTripWithStopsByTripId(id,User.Identity.Name));            
         }
 
         public String val { get; set; }

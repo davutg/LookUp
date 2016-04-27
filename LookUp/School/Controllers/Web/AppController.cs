@@ -30,7 +30,7 @@ namespace School.Controllers.Web
         [Authorize]
         public IActionResult Trips()
         {
-            var trips = _repository.GetAllTripsWithStops();
+            var trips = _repository.GetAllTripsWithStops(User.Identity.Name);
             return View(trips);
         }
 

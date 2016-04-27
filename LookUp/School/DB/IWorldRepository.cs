@@ -7,11 +7,12 @@ namespace School.DB
     {
         IEnumerable<Stop> GetAllStops();
         IEnumerable<Trip> GetAllTrips();
-        IEnumerable<Trip> GetAllTripsWithStops();
+        IEnumerable<Trip> GetTripsForUser(string userName);
+        IEnumerable<Trip> GetAllTripsWithStops(string userName);
         void SaveTrip(Trip tripObject);
         bool SaveAll();
         void DeleteTripById(int id);
-        void UpdateTrip(Trip trip);
-        Trip GetTripWithStopsByTripId(int tripId);
+        void UpdateTrip(Trip trip);        
+        Trip GetTripWithStopsByTripId(int tripId, string userName);
     }
 }

@@ -29,7 +29,7 @@ namespace School.Controllers.API
         [HttpGet]
         public JsonResult GetStops(int tripId)
         {
-            var trip=_repo.GetTripWithStopsByTripId(tripId);
+            var trip=_repo.GetTripWithStopsByTripId(tripId,User.Identity.Name);
             if (trip == null)
                 return Json(null);
             return Json(Mapper.Map<IEnumerable<StopViewModel>>(trip.Destinations));
@@ -43,7 +43,7 @@ namespace School.Controllers.API
                 try
                 {
                     var stop = Mapper.Map<Stop>(stopVM);                    
-                    _repo.GetTripWithStopsByTripId(tripId).Destinations.Add(stop);
+                    _repo.GetTripWithStopsByTripId(tripId,User.Identity.Name).Destinations.Add(stop);
                     if (_repo.SaveAll())
                     {
                         Response.StatusCode = StatusCodes.Status200OK;

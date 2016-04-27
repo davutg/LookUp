@@ -25,10 +25,10 @@ namespace School.DB
         }
 
 
-        public IEnumerable<Trip> GetAllTripsWithStops()
+        public IEnumerable<Trip> GetAllTripsWithStops(String userName)
         {
             try {
-                return _context.Trips
+                return _context.Trips.Where(w => w.UserName == userName)
                     .Include(t => t.Destinations)
                     .OrderBy(o => o.Name).ToList();
             }catch(Exception exe)
@@ -63,10 +63,15 @@ namespace School.DB
             _context.Update(trip);
         }
 
-        public Trip GetTripWithStopsByTripId(int tripId)
+        public Trip GetTripWithStopsByTripId(int tripId,string userName)
         {
-            var trip = _context.Trips.Where(w => w.Id == tripId).Include(i => i.Destinations).FirstOrDefault();
+            var trip = _context.Trips.Where(w => w.Id == tripId && w.UserName==userName).Include(i => i.Destinations).FirstOrDefault();
             return trip;
+        }
+
+        public IEnumerable<Trip> GetTripsForUser(string userName)
+        {
+            return _context.Trips.Where(w => w.UserName == userName);
         }
     }
 }
