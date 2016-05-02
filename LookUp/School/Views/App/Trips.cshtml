@@ -5,8 +5,25 @@
 @section Scripts
 {
     <script src="~/lib/angular/angular.min.js"></script>
+    <script src="~/js/app-trips.js"></script>
+    <script src="~/js/tripsController.js"></script>
 }
-    <div class="col-md-4">
+    <div class="col-md-4" ng-app="app-trips">
+        <span class="collapse">{{"2x2="+(2*2)}}</span>
+        <div class="collapse" ng-controller="tripsController as vm">
+            <input ng-model="vm.name" />
+            <label>{{vm.name}}</label>
+        </div>
+        <div class="collapse">
+            <table class="table table-striped table-bordered" ng-controller="tripsController as vm">
+                <tr ng-repeat="trip in vm.Trips">
+                    <td>{{trip.TripName}}</td>
+                    <td>{{trip.TripDuration}}</td>
+                    <td>{{trip.Date |date:"dd-MM-yyyy"}}</td>
+                    <td><button class="btn btn-primary btn-xs">Manage</button></td>
+                </tr>
+            </table>
+        </div>
         <h2>The World</h2>
         This will be a funny web site
         <form class="jumbotron">
