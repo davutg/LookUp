@@ -8,71 +8,73 @@
     <script src="~/js/app-trips.js"></script>
     <script src="~/js/tripsController.js"></script>
 }
-    <div class="col-md-4" ng-app="app-trips">
-        <span class="collapse">{{"2x2="+(2*2)}}</span>
-        <div class="collapse" ng-controller="tripsController as vm">
-            <input ng-model="vm.name" />
-            <label>{{vm.name}}</label>
-        </div>
-        <div class="collapse">
-            <table class="table table-striped table-bordered" ng-controller="tripsController as vm">
-                <tr ng-repeat="trip in vm.Trips">
-                    <td>{{trip.TripName}}</td>
-                    <td>{{trip.TripDuration}}</td>
-                    <td>{{trip.Date |date:"dd-MM-yyyy"}}</td>
-                    <td><button class="btn btn-primary btn-xs">Manage</button></td>
-                </tr>
-            </table>           
-        </div>
-        <div ng-controller="tripsController as vm" class="collapse">
-            <form name="newTripForm" ng-submit="vm.addTrip()">
-                <div class="form-group">
-                    <label for="tripName">Trip Name</label>
-                    <input for="tripName" id="tripName" name="tripName" ng-model="vm.newTrip.name" class="form-control" required ng-minlength="5" />
-                    <input class="btn btn-primary btn-sm" type="submit" value="Add"
-                           ng-disabled="newTripForm.$invalid" />
-                    <div ng-messages='newTripForm.tripName.$error' ng-if='newTripForm.tripName.$dirty'>
-                        <span ng-if="newTripForm.tripName.$dirty" ng-show="newTripForm.tripName.$error.required" class="text-warning">Name is required</span>
-                        <span ng-if="newTripForm.tripName.$dirty" ng-show="newTripForm.tripName.$error.minlength" class="text-warning">Name should be at least 5 chars</span>
-                        <span ng-show="newTripForm.$submitted">Submited!</span>
-                    </div>
+<div class="col-md-4" ng-app="app-trips">
+    <span class="collapse">{{"2x2="+(2*2)}}</span>
+    <div class="collapse" ng-controller="tripsController as vm">
+        <input ng-model="vm.name" />
+        <label>{{vm.name}}</label>
+    </div>
+    <div class="jumbotron" ng-controller="tripsController as vm">
+        <table class="table table-striped table-bordered" ng-show="!vm.isBusy">
+            <tr ng-repeat="trip in vm.Trips">
+                <td>{{trip.name}}</td>
+                <td>{{trip.TripDuration}}</td>
+                <td>{{trip.created |date:"dd-MM-yyyy"}}</td>
+                <td><button class="btn btn-primary btn-xs">Manage</button></td>
+            </tr>
+        </table>
+        <span class="fa fa-spinner fa-spin" ng-show="vm.isBusy"></span>
+        <div class="text-danger" ng-show="vm.loadingError">There is a loading error : {{vm.loadingError}}</div>
 
-                </div>
-            </form>
-            <span class="{{vm.infoClass}}">{{vm.newTrip.name}}</span>
-        </div>
-        <h2>The World</h2>
-        This will be a funny web site
-        <form class="jumbotron">
+        <form name="newTripForm" ng-submit="vm.addTrip()">
             <div class="form-group">
-                <label>Date</label>
-                <input  class="form-control"/>
+                <label for="tripName">Trip Name</label>
+                <input for="tripName" id="tripName" name="tripName" ng-model="vm.newTrip.name" class="form-control" required ng-minlength="5" />
+                <input class="btn btn-primary btn-sm" type="submit" value="Add"
+                       ng-disabled="newTripForm.$invalid" />
+                <span ng-messages='newTripForm.tripName.$error' ng-if='newTripForm.tripName.$dirty'>
+                    <span ng-if="newTripForm.tripName.$dirty" ng-show="newTripForm.tripName.$error.required" class="text-warning">Name is required</span>
+                    <span ng-if="newTripForm.tripName.$dirty" ng-show="newTripForm.tripName.$error.minlength" class="text-warning">Name should be at least 5 chars</span>                    
+                </span>
+                <div class="text-info" ng-show="newTripForm.$submitted">Submited!</div>
             </div>
-            <div class="form-group">
-                <label>Location</label>
-                <input class="form-control">
-            </div>
-            <input type="button" class="btn btn-primary btn-sm" value="Add"/>
         </form>
+        <div class="{{vm.infoClass}}">{{vm.newTrip.name}}</div>        
+        <div >{{vm.userName="@User.Identity.Name"}}</div>
+        
     </div>
+    <h2>The World</h2>
+    This will be a funny web site
+    <form class="jumbotron">
+        <div class="form-group">
+            <label>Date</label>
+            <input class="form-control" />
+        </div>
+        <div class="form-group">
+            <label>Location</label>
+            <input class="form-control">
+        </div>
+        <input type="button" class="btn btn-primary btn-sm" value="Add" />
+    </form>
+</div>
 
-    <div class="col-md-6">
-        <h2>The Map</h2>
-        This will be a wonderful journey !!!                
-        <ol>
-            @foreach (School.Model.Trip trip in Model)
+<div class="col-md-6 jumbotron">
+    <h2>The Map</h2>
+    This will be a wonderful journey !!!
+    <ol>
+        @foreach (School.Model.Trip trip in Model)
         {
-                <li>
-                    @trip.Name (@trip.Created)
-                    <ul>
-                        @foreach (var stop in trip.Destinations)
-                        {                            
-                                <li>
-                                    @stop.Arrival.ToShortTimeString()-<a href="https://www.google.com.tr/?q=Goreme&gws_rd=ssl#safe=active&q=@stop.Name%20Turkey">@stop.Name</a>
-                                </li>                            
-                        }
-                    </ul>
-                </li>
-            }
-        </ol>       
-    </div>
+            <li>
+                @trip.Name (@trip.Created)
+                <ul>
+                    @foreach (var stop in trip.Destinations)
+                    {
+                        <li>
+                            @stop.Arrival.ToShortTimeString()-<a href="https://www.google.com.tr/?q=Goreme&gws_rd=ssl#safe=active&q=@stop.Name%20Turkey">@stop.Name</a>
+                        </li>
+                    }
+                </ul>
+            </li>
+        }
+    </ol>
+</div>

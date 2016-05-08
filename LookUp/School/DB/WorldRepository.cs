@@ -1,9 +1,11 @@
-﻿using Microsoft.Data.Entity;
+﻿using Microsoft.AspNet.Authorization;
+using Microsoft.Data.Entity;
 using Microsoft.Extensions.Logging;
 using School.Model;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Principal;
 using System.Threading.Tasks;
 
 namespace School.DB
@@ -43,7 +45,8 @@ namespace School.DB
             return _context.Stops;
         }
 
-        public void SaveTrip(Trip tripObject)
+        //[Authorize]
+        public void AddTrip(Trip tripObject)
         {
             _context.Add(tripObject);
         }

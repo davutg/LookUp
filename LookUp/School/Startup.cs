@@ -18,6 +18,8 @@ using Newtonsoft.Json.Serialization;
 using Microsoft.AspNet.Identity.EntityFramework;
 using Microsoft.AspNet.Authentication.Cookies;
 using System.Net;
+using System.Security.Principal;
+using Microsoft.AspNet.Identity;
 
 namespace School
 {
@@ -44,7 +46,7 @@ namespace School
             services.AddEntityFramework().AddSqlite().AddDbContext<WorldContext>();
             services.AddTransient<SeedDataService>();
             services.AddScoped<IWorldRepository, WorldRepository>();
-
+           
             using (var db = new WorldContext())
             {
                 db.Database.EnsureCreated();
@@ -85,7 +87,7 @@ namespace School
                        }
                  };
              }).AddEntityFrameworkStores<WorldContext>();
-
+            
             //services.ConfigureCookieAuthentication(config =>
             //{
             //    config.LoginPath = "/Auth/Login";

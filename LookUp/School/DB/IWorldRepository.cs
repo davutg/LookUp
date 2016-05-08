@@ -9,7 +9,7 @@ namespace School.DB
         IEnumerable<Trip> GetAllTrips();
         IEnumerable<Trip> GetTripsForUser(string userName);
         IEnumerable<Trip> GetAllTripsWithStops(string userName);
-        void SaveTrip(Trip tripObject);
+        void AddTrip(Trip tripObject);
         bool SaveAll();
         void DeleteTripById(int id);
         void UpdateTrip(Trip trip);        

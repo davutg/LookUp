@@ -85,7 +85,8 @@ namespace School.Controllers.API
                 {
                     
                     Trip tripObject = AutoMapper.Mapper.Map<Trip>(val);
-                    _repo.SaveTrip(tripObject);
+                    tripObject.UserName = User.Identity.Name;
+                    _repo.AddTrip(tripObject);
                     if (_repo.SaveAll())
                     {
                         Request.HttpContext.Response.StatusCode = Microsoft.AspNet.Http.StatusCodes.Status201Created;
