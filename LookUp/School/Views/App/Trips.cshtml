@@ -22,7 +22,24 @@
                     <td>{{trip.Date |date:"dd-MM-yyyy"}}</td>
                     <td><button class="btn btn-primary btn-xs">Manage</button></td>
                 </tr>
-            </table>
+            </table>           
+        </div>
+        <div ng-controller="tripsController as vm" class="collapse">
+            <form name="newTripForm" ng-submit="vm.addTrip()">
+                <div class="form-group">
+                    <label for="tripName">Trip Name</label>
+                    <input for="tripName" id="tripName" name="tripName" ng-model="vm.newTrip.name" class="form-control" required ng-minlength="5" />
+                    <input class="btn btn-primary btn-sm" type="submit" value="Add"
+                           ng-disabled="newTripForm.$invalid" />
+                    <div ng-messages='newTripForm.tripName.$error' ng-if='newTripForm.tripName.$dirty'>
+                        <span ng-if="newTripForm.tripName.$dirty" ng-show="newTripForm.tripName.$error.required" class="text-warning">Name is required</span>
+                        <span ng-if="newTripForm.tripName.$dirty" ng-show="newTripForm.tripName.$error.minlength" class="text-warning">Name should be at least 5 chars</span>
+                        <span ng-show="newTripForm.$submitted">Submited!</span>
+                    </div>
+
+                </div>
+            </form>
+            <span class="{{vm.infoClass}}">{{vm.newTrip.name}}</span>
         </div>
         <h2>The World</h2>
         This will be a funny web site

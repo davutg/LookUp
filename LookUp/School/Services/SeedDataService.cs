@@ -42,7 +42,7 @@ namespace School.Services
                 {
                     Created = DateTime.UtcNow,
                     Name = "Cappadocia",
-                    UserName = "CowBoy",
+                    UserName = "cowboy",
                     Destinations = new List<Stop>
                     {
                         new Stop() {
