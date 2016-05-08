@@ -5,6 +5,7 @@
 @section Scripts
 {
     <script src="~/lib/angular/angular.min.js"></script>
+    <script src="~/js/simpleControls.js"></script>
     <script src="~/js/app-trips.js"></script>
     <script src="~/js/tripsController.js"></script>
 }
@@ -41,7 +42,7 @@
         </form>
         <div class="{{vm.infoClass}}">{{vm.newTrip.name}}</div>        
         <div >{{vm.userName="@User.Identity.Name"}}</div>
-        
+        <dc-wait display-when="vm.isBusy"/>
     </div>
     <h2>The World</h2>
     This will be a funny web site
