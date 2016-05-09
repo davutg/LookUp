@@ -29,8 +29,20 @@
             vm.selectedTheme = theme;
             $('#bootstrapCss').attr("href", theme.address);
             localStorage.theme = theme.address;
-        }        
+        }
 
+
+        vm.changeThemeEnter = function (theme) {
+            vm.selectedThemeOld = vm.selectedTheme;
+            vm.selectedTheme = theme;            
+        }
+
+
+        vm.changeThemeLeave = function () {         
+            vm.selectedThemeOld = vm.selectedTheme;
+        }
+
+        vm.selectedThemeOld;
         vm.selectedTheme;
 
     };

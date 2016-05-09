@@ -15,7 +15,11 @@
         <div ng-if="vm.selectedTheme" class="text-success text-capitalize h1">{{vm.selectedTheme.name}}</div>
         <ul class="btn-group-lg list-inline">           
             <li class="btn btn-lg " ng-repeat="template in vm.templateList">
-                <a ng-click="vm.changeTheme(template)" class="btn btn-default">{{template.name}}</a>
+                <a 
+                   ng-click="vm.changeTheme(template)" 
+                   ng-mouseenter="vm.changeThemeEnter(template)"
+                   ng-mouseleave="vm.changeThemeLeave()" 
+                   class="btn btn-default">{{template.name}}</a>
             </li>
         </ul>
     </div>
