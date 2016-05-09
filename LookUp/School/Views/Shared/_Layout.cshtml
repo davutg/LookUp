@@ -2,7 +2,7 @@
 <html title="School-@ViewBag.Title">
 <head>
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.css" /> @*changed : Bootstrap*@
-    <link rel="stylesheet" href="~/lib/bootswatch/yeti/bootstrap.min.css"> @*changed : Bootswatch Template - override some of the bootstrap css classes *@
+    <link id="bootstrapCss" rel="stylesheet" href="~/lib/bootswatch/yeti/bootstrap.min.css"> @*changed : Bootswatch Template - override some of the bootstrap css classes *@
     <link rel="stylesheet" href="~/lib/font-awesome/css/font-awesome.css" /> @*changed : font-awsome*@
     <link rel="stylesheet" href="~/css/site.css" />
     
@@ -32,26 +32,26 @@
     <div id="wrapper">
         <nav class="navbar navbar-inverse">
             @*changed : Bootstrap - adding navbar*@
-            <div class="container-fluid" style="margin-left:0px;padding-left:0px">
+            <div class="container-fluid" style="margin-left:0;padding-left:0">
                 <ul class="nav navbar-nav navbar-left">
                     <li>
                         <button id="toggleButton" class="btn btn-primary btn-sm">
-                            <i class="fa fa-angle-double-left fa-2x"> </i>
+                            <i class="fa  fa-angle-double-left fa-2x"> </i>
                         </button> @*changed : Bootstrap*@
                     </li>
                     @*<li> <i class="fa fa-spinner fa-4x" ></i></li>*@
                 </ul>
-                <a asp-controller="App" asp-action="Index" class="navbar-brand"> Home</a>
+                <a asp-controller="App" asp-action="Index" class="navbar-brand" > Home</a>
                 <ul class="nav navbar-nav navbar-right">
                     <li>
-                        <a href="#" class="btn btn-sm btn-info">
+                        <button href="#" class="btn btn-sm btn-info">
                             <i class="fa fa-save"></i> Save
-                        </a>
+                        </button>
                     </li>
                     <li>
-                        <a href="#" class="btn btn-sm btn-info">
+                        <button href="#" class="btn btn-sm btn-info">
                             <i class="fa fa-print"></i> Print
-                        </a>
+                        </button>
                     </li>
                 </ul>
             </div>
