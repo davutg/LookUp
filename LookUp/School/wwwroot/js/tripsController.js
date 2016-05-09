@@ -23,6 +23,8 @@
         vm.newTrip = {
             //name: ""
         };
+
+        //GET Trips
         $http.get("/api/Trip")
         .then(function (response)
         {
@@ -36,6 +38,27 @@
             vm.isBusy = false;
         };
 
+        //DELETE
+        vm.deleteTrip = function (tripID) {
+            vm.isBusy = true;
+            $http.delete("/api/trip/" + tripID)
+            .then(function (response) {
+                var element = $.grep(vm.Trips, function (x) {
+                    return x.id == tripID;
+                });
+                var index = vm.Trips.indexOf(element[0]);
+                vm.Trips.splice(index, 1);
+                console.info("deleting...:"+element);
+                //vm.Trips.splice()
+            },function(error){
+
+            }).finally()
+            {
+                vm.isBusy=false;
+            };
+        };
+
+        //ADD
         vm.addTrip=function()
         {
             vm.isBusy = true;
