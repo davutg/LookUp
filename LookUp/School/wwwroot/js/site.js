@@ -96,7 +96,7 @@ $(document).ready(
     }
 
     /* On load, set theme from local storage */
-    if (supports_storage) {
+    if (supports_storage) {        
         var theme = localStorage.theme;
         if (theme) {
             set_theme(JSON.parse(theme).address);

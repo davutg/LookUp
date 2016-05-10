@@ -43,9 +43,15 @@
             vm.selectedTheme = vm.selectedThemeOld;
         }
 
-        vm.selectedThemeOld = JSON.parse(localStorage.theme);
-        vm.selectedTheme = JSON.parse(localStorage.theme);
+        
+        vm.selectedThemeOld = getTheme();
+        vm.selectedTheme = getTheme();
 
+        function getTheme(){
+            if (localStorage.theme)
+                return JSON.parse(localStorage.theme);
+            return { name: "yeti", address: "/lib/bootswatch/yeti/bootstrap.min.css" };
+        }
     };
 }
 )();
