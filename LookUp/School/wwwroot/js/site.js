@@ -93,16 +93,13 @@ $(document).ready(
 
     function set_theme(theme) {
         $('#bootstrapCss').attr('href', theme);
-        if (supports_storage) {
-            localStorage.theme = theme;
-        }
     }
 
     /* On load, set theme from local storage */
     if (supports_storage) {
         var theme = localStorage.theme;
         if (theme) {
-            set_theme(theme);
+            set_theme(JSON.parse(theme).address);
         }
     } else {
         /* Don't annoy user with options that don't persist 

@@ -27,8 +27,9 @@
 
         vm.changeTheme = function (theme) {
             vm.selectedTheme = theme;
+            vm.selectedThemeOld = theme;
             $('#bootstrapCss').attr("href", theme.address);
-            localStorage.theme = theme.address;
+            localStorage.theme = JSON.stringify(theme);
         }
 
 
@@ -39,11 +40,11 @@
 
 
         vm.changeThemeLeave = function () {         
-            vm.selectedThemeOld = vm.selectedTheme;
+            vm.selectedTheme = vm.selectedThemeOld;
         }
 
-        vm.selectedThemeOld;
-        vm.selectedTheme;
+        vm.selectedThemeOld = JSON.parse(localStorage.theme);
+        vm.selectedTheme = JSON.parse(localStorage.theme);
 
     };
 }
