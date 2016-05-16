@@ -112,6 +112,7 @@ namespace School.Controllers.API
         public JsonResult Put(int id, [FromBody]TripViewModel tripVM)
         {
             var trip=Mapper.Map<Trip>(tripVM);
+            trip.UserName = User.Identity.Name;
             _repo.UpdateTrip(trip);
             if (_repo.SaveAll())
             {

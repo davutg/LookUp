@@ -1,14 +1,15 @@
 ﻿<div>
     <a class="btn fa fa-angle-double-left" href="#/"></a>
+    <h1>{{vm.Trip.userName}}</h1>
     <form class="jumbotron">
         <div class="form-group">
             <label>Date</label>
-            <input class="form-control" ng-model="vm.tripData" required ng-pattern="dd.mm.yyyy"/>
+            <input name="tripdateInput" type="date" id="tripDateInput" class="form-control" ng-model="vm.tripDateInput" required ng-pattern="dd.mm.yyyy"/>
         </div>
         <div class="form-group">
             <label>Location</label>
-            <input class="form-control" ng-model="vm.tripName" required maxlength="255">
+            <input  class="form-control" ng-model="vm.Trip.name" required maxlength="255">
         </div>
-        <input type="button" class="btn btn-primary btn-sm" value="Add" />
+        <input type="button" ng-click="vm.updateTrip()" class="btn btn-primary btn-sm" value="Update" />
     </form>    
 </div>
