@@ -2,7 +2,14 @@
     "use strict";
     angular.module("app-trips")
     .controller("tripsController", tripsController);
-    function tripsController($http, $scope) {
+    function tripsController($http, $scope, $routeParams) {
+
+        $scope.$on('$routeChangeSuccess', function () {
+            console.info('routePrms:' + JSON.stringify($routeParams));
+            // $routeParams will be populated here if
+            // this controller is used outside ng-view
+        });
+
         var vm = this;
         vm.name = "UserName";
         vm.loadingError = "";

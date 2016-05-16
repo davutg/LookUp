@@ -1,0 +1,14 @@
+﻿<div>
+    <a class="btn fa fa-angle-double-left" href="#/"></a>
+    <form class="jumbotron">
+        <div class="form-group">
+            <label>Date</label>
+            <input class="form-control" ng-model="vm.tripData" required ng-pattern="dd.mm.yyyy"/>
+        </div>
+        <div class="form-group">
+            <label>Location</label>
+            <input class="form-control" ng-model="vm.tripName" required maxlength="255">
+        </div>
+        <input type="button" class="btn btn-primary btn-sm" value="Add" />
+    </form>    
+</div>

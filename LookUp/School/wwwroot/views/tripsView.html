@@ -1,0 +1,46 @@
+﻿<span class="collapse">{{"2x2="+(2*2)}}</span>
+<div class="collapse" >
+    <input ng-model="vm.name" />
+    <label>{{vm.name}}</label>
+</div>
+<div class="jumbotron">
+    <table class="table table-striped" ng-show="!vm.isBusy">
+        <thead>
+            <tr>
+                <td>Name</td>
+                <td>Duration</td>
+                <td>Date</td>
+                <td>Manage</td>
+                <td>Del</td>
+            </tr>
+        </thead>
+        <tbody>
+            <tr ng-repeat="trip in vm.Trips">
+                <td>{{trip.name}}</td>
+                <td>{{trip.TripDuration}}</td>
+                <td>{{trip.created |date:"dd-MM-yyyy"}}</td>
+                <td><a href="#/editor/{{trip.id}}" class="btn btn-primary btn-xs">Manage</a></td>
+                <td><button class="btn btn-danger btn-xs" ng-click="vm.deleteTrip(trip.id)">Delete</button></td>
+            </tr>
+        </tbody>
+    </table>
+    <span class="fa fa-spinner fa-spin" ng-show="vm.isBusy"></span>
+    <div class="text-danger" ng-show="vm.loadingError">There is a loading error : {{vm.loadingError}}</div>
+
+    <form name="newTripForm" ng-submit="vm.addTrip()">
+        <div class="form-group">
+            <label for="tripName">Trip Name</label>
+            <input for="tripName" id="tripName" name="tripName" ng-model="vm.newTrip.name" class="form-control" required ng-minlength="5" />
+            <input class="btn btn-primary btn-sm" type="submit" value="Add"
+                   ng-disabled="newTripForm.$invalid" />
+            <span ng-messages='newTripForm.tripName.$error' ng-if='newTripForm.tripName.$dirty'>
+                <span ng-if="newTripForm.tripName.$dirty" ng-show="newTripForm.tripName.$error.required" class="text-warning">Name is required</span>
+                <span ng-if="newTripForm.tripName.$dirty" ng-show="newTripForm.tripName.$error.minlength" class="text-warning">Name should be at least 5 chars</span>
+            </span>
+            <div class="text-info" ng-show="newTripForm.$submitted">Submited!</div>
+        </div>
+    </form>
+    <div class="{{vm.infoClass}}">{{vm.newTrip.name}}</div>
+    <div>{{vm.userName="@User.Identity.Name"}}</div>
+    <dc-wait display-when="vm.isBusy" />
+</div>
