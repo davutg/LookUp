@@ -11,13 +11,16 @@ using System.Net;
 using AutoMapper;
 using Microsoft.Extensions.Logging;
 using Microsoft.AspNet.Authorization;
+using School.Helpers;
 
 // For more information on enabling Web API for empty projects, visit http://go.microsoft.com/fwlink/?LinkID=397860
+
 
 namespace School.Controllers.API
 {
     [Authorize]
     [Route("api/[controller]")]
+    [NoCache]
     public class TripController : Controller
     {
         private IWorldRepository _repo;

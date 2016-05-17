@@ -22,9 +22,13 @@ function()
             isNotifyingDisabled = false;
         });
         
+        function getTimeStamp()
+        {
+            return encodeURI(new Date().toString());
+        }
    
         vm.tripId = $routeParams.tripId;
-        $http.get("/api/Trip/" + vm.tripId).then(succeeded);
+        $http.get("/api/Trip/" + vm.tripId + "?" + getTimeStamp()).then(succeeded);
 
         function succeeded(response) {
             vm.Trip=response.data;

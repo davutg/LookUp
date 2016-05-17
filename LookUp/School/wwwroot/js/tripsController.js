@@ -31,8 +31,12 @@
             //name: ""
         };
 
-        //GET Trips
-        $http.get("/api/Trip")
+        //GET Trips http://stackoverflow.com/a/16098904/413032
+        $http(
+            {
+                url: "/api/Trip",
+                params: { foo: new Date().getTime().toString() }
+            })
         .then(function (response)
         {
             vm.Trips=vm.Trips.concat(response.data);

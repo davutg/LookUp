@@ -20,6 +20,8 @@ using Microsoft.AspNet.Authentication.Cookies;
 using System.Net;
 using System.Security.Principal;
 using Microsoft.AspNet.Identity;
+using Microsoft.AspNet.Mvc.Filters;
+using Microsoft.AspNet.Mvc;
 
 namespace School
 {
@@ -55,7 +57,9 @@ namespace School
             services.AddMvc(config=>
             {
                 ////Redirects all requests to Https version
-                //config.Filters.Add(new RequireHttpsAttribute());                
+                //config.Filters.Add(new RequireHttpsAttribute());
+                config.Filters.Add(new ResponseCacheFilter(new CacheProfile() { NoStore=true}));
+
             }).AddJsonOptions(opt=>
             {
                 opt.SerializerSettings.ContractResolver = new CamelCasePropertyNamesContractResolver();
@@ -108,7 +112,7 @@ namespace School
             {
                 return (level == LogLevel.Critical) || (level == LogLevel.Error);
             });
-
+            
             app.UseStaticFiles();
 
             //Order Matters !!!
