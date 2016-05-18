@@ -10,6 +10,7 @@
     "bootswatch": "3.3.5+1",
     "font-awesome": "~4.5.0",
     "angular": "1.4.6",
-    "angular-route": "1.4.6"
+    "angular-route": "1.4.6",
+    "travelmap": "1.0.2"
   }
 }

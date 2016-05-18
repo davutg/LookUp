@@ -117,3 +117,8 @@ margin:0px;
     -webkit-transition: left ease .5s;
     transition: left ease .5s;
 }
+
+#map {
+    width:100%;
+    height:400px;
+}

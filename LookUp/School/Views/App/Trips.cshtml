@@ -3,10 +3,14 @@
     ViewBag.Title = "Trips Page";
 }
 @section Scripts
-{
+{    
     <script src="~/lib/angular/angular.min.js"></script>
     <script src="~/lib/angular-route/angular-route.min.js"></script>
     <script src="~/js/simpleControls.js"></script>
+    <script src="~/lib/underscore/underscore-min.js"></script>
+    <script src="~/lib/gmaps/gmaps.min.js"></script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAajnpD2EEBvAyjeFpfdIWKwMHrtH0fgCY"></script>
+    <script src="~/lib/travelmap/travelmap.min.js"></script>
     <script src="~/js/app-trips.js"></script>
     <script src="~/js/tripsController.js"></script>
     <script src="~/js/tripEditorController.js"></script>
@@ -34,4 +38,7 @@
             </li>
         }
     </ol>
+    <div id="map">
+
+    </div>
 </div>

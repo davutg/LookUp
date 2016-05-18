@@ -31,7 +31,8 @@ function()
         $http.get("/api/Trip/" + vm.tripId + "?" + getTimeStamp()).then(succeeded);
 
         function succeeded(response) {
-            vm.Trip=response.data;
+            vm.Trip = response.data;
+            _showMap(vm.Trip.destinations)
         }
         vm.updateTrip = function () {
             $http.put("/api/Trip/"+vm.Trip.id, vm.Trip).then(postSucceeded);
@@ -44,6 +45,36 @@ function()
         }
     }
     
+    function _compare(a,b) {
+        if (a.long < b.long)
+            return -1;
+        else if (a.long > b.long)
+            return 1;
+        else 
+            return 0;
+    }
+
+    function _showMap(stops) {
+        var mapStops = _.map(stops, function (item) {
+            return {
+                lat: item.latitude,
+                long: item.longitude,
+                info:item.name
+            }
+        }).sort(_compare);
+
+        if (stops && stops.length > 0)
+        {
+            var map=travelMap.createMap({
+                stops: mapStops,
+                selector: "#map",
+                currentStop: 0,
+                initialZoom: 3
+            });
+            //map.map.zoom = 3;
+            map.map.fitZoom();
+        }
+    }
    
 }
 )();
