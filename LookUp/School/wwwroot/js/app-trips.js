@@ -7,16 +7,16 @@
             {
                 controller: "tripsController",
                 controllerAs: "vm",
-                templateUrl:"/views/tripsView.html"
+                templateUrl: "/views/tripsView.html"
             }).when("/editor/:tripId?",
             {
                 controller: "tripEditorController",
                 controllerAs: "vm",
-                templateUrl:"/views/tripEditorView.html"
-            });        
-        $routeProvider.otherwise({redirecTo:"/"});
-    })
-    ;
+                templateUrl: "/views/tripEditorView.html"
+            });
+        $routeProvider.otherwise({ redirecTo: "/" });
+    });
+    
 })();
 
 ///editor/:tripId? Question mark makes parameter optionan otherwise blank page!

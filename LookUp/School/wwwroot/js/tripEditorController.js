@@ -8,7 +8,7 @@ function()
     function tripEditorController($http, $routeParams, $scope, $filter, $location) {
         var vm = this;
         vm.Trip = {};
-
+/*
         var isNotifyingDisabled = false;
         $scope.$watch('vm.Trip.created', function (newValue) {
             if (!isNotifyingDisabled) {
@@ -21,7 +21,7 @@ function()
             vm.Trip.created = newValue.toJSON();
             isNotifyingDisabled = false;
         });
-        
+*/        
         function getTimeStamp()
         {
             return encodeURI(new Date().toString());
