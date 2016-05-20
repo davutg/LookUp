@@ -7,6 +7,7 @@ function()
     
     function tripEditorController($http, $routeParams, $scope, $filter, $location) {
         var vm = this;
+        vm.name = "Trip Editor";
         vm.Trip = {};
 /*
         var isNotifyingDisabled = false;

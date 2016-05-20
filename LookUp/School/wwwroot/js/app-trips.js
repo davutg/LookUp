@@ -13,6 +13,11 @@
                 controller: "tripEditorController",
                 controllerAs: "vm",
                 templateUrl: "/views/tripEditorView.html"
+            }).when("/test/:tripId?",
+            {
+                controller: "tripEditorController",
+                controllerAs: "vm",
+                templateUrl:"/views/MOCKTest.html"
             });
         $routeProvider.otherwise({ redirecTo: "/" });
     });

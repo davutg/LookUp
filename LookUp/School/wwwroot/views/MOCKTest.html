@@ -1,0 +1,15 @@
+﻿<div class="jumbotron">
+    <h1>
+        {{vm.name}}
+    </h1>
+    <ul>
+        <li ng-repeat="stop in vm.Trip.destinations">
+            
+            <a class="btn btn-success btn-sm" target="_blank"
+               href="https://www.google.com.tr/search?q={{stop.name}}&safe=active&biw=1920&bih=955&espv=2&source=lnms&tbm=isch&sa=X&ved=0ahUKEwj25bGC8OjMAhWGXRQKHZiIAC0Q_AUIBigB&dpr=1">
+                {{stop.name}}
+            </a>
+            
+        </li>        
+    </ul>
+</div>
