@@ -8,7 +8,8 @@
             </div>
             <div class="form-group">
                 <label>Date</label>
-                <dc-date modelx="vm.Trip.created" namex="tripDateInput" ptrn="dd.MM.yyyy" required></dc-date>
+                <dc-date modelx="vm.Trip.created" namex="tripDateInput" ptrn="dd.MM.yyyy" required></dc-date>                
+                <!--input id="date" ng-model="vm.tripDateInput" /-->
                 <!--input name="tripdateInput" type="date" id="tripDateInput" class="form-control" ng-model="vm.tripDateInput" required ng-pattern="dd.mm.yyyy" /-->                
             </div>                        
                 <input type="button" ng-click="vm.updateTrip()" class="btn btn-primary btn-sm" value="Update" />          
@@ -18,6 +19,5 @@
         <li class="list-group-item list-group-item-info" ng-repeat="stop in vm.Trip.destinations">
             <span class="text-primary text-capitalize">{{stop.name}}</span><br /> ({{stop.arrival}})
         </li>
-    </ul>
-
+    </ul>    
 </div>
