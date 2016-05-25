@@ -1,11 +1,14 @@
 ﻿<!DOCTYPE html>
 <html title="School-@ViewBag.Title">
-<head>
-    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.css" /> @*changed : Bootstrap*@
-    <link id="bootstrapCss" rel="stylesheet" href="~/lib/bootswatch/yeti/bootstrap.min.css"> @*changed : Bootswatch Template - override some of the bootstrap css classes *@
-    <link rel="stylesheet" href="~/lib/font-awesome/css/font-awesome.css" /> @*changed : font-awsome*@
+<head>    
+    <link rel="stylesheet" href="~/scripts/lib/bootstrap/dist/css/bootstrap.css" /> @*changed : Bootstrap*@
+    <link id="bootstrapCss" rel="stylesheet" href="~/scripts/lib/bootswatch/yeti/bootstrap.min.css"> @*changed : Bootswatch Template - override some of the bootstrap css classes *@
+    <link rel="stylesheet" href="~/scripts/lib/font-awesome/css/font-awesome.css" /> @*changed : font-awsome*@
     <link rel="stylesheet" href="~/css/site.css" />
-    
+    <script src="~/scripts/lib/requirejs/require.js"></script>
+<!--Before Render Scripst-->
+    @RenderSection("Scripts", false)
+<!--After Render Scripst-->
 </head>
 <body>
     <div id="sidebar">
@@ -67,10 +70,7 @@
                 <h4 class="text-center text-info">&copy; All rights are reserved!</h4>
             </div>
         </div>
-    </div>
-    <script src="~/lib/jquery/dist/jquery.js" type="text/javascript"></script>
-    <script src="~/js/site.js" type="text/javascript"></script>
-    @RenderSection("Scripts", false)
+    </div>            
 </body>
 
 </html>
