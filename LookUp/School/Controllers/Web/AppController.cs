@@ -36,7 +36,7 @@ namespace School.Controllers.Web
 
 
         public IActionResult About()
-        {
+        {            
             return View();
         }
 

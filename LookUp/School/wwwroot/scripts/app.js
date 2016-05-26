@@ -6,7 +6,7 @@
         jQueryValidation: 'scripts/lib/jquery-validation/dist/jquery.validate.min',
         jQueryUnobtrunsive: 'scripts/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.min',
         site: 'scripts/js/site',
-        angularMin:['scripts/lib/angular/angular.min'],
+        angularMin:'scripts/lib/angular/angular.min',
         angularRoute:'scripts/lib/angular-route/angular-route.min',
         simpleControls:'scripts/js/simpleControls',
         appTrips: 'scripts/js/app',
@@ -16,9 +16,25 @@
     }
 });
 
-require(['jQuery'], function ($) {
+requirejs(['jQuery'], function ($) {
     console.info("jquery");
-    require(['site','bootstrap'], function (site,boot) {
+    require(['angularMin'], function (angu) {
+        require(['angularRoute', 'simpleControls'], function (ro, si) {
+            console.log('simpleControls,angularRoute');
+            require(['appTrips'], function (app) {
+                console.log('appTrips');
+                require(['templateController'], function (template) {
+                    var tagMainApp = jQuery("#app").first().get();
+                    angular.bootstrap(tagMainApp, ['app']);
+                });
+
+            });
+        })
+    }
+);
+ 
+    requirejs(['site', 'bootstrap'], function (site, boot) {
         console.info("site,bootstrap");
+
     });
 });
