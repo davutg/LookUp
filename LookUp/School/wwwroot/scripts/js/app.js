@@ -1,13 +1,22 @@
 (function()
 {
+    var resolveController = function (dep)
+    {
+        console.info(dep);
+        requirejs([dep], function (d)
+        {
+            return d;
+        });
+    }
     "use strict";    
     angular.module("app", ["simpleControls", "ngRoute"])
     .config(function ($routeProvider) {
         $routeProvider.when("/",
-            {
+            {                
                 controller: "tripsController",
                 controllerAs: "vm",
-                templateUrl: "/views/tripsView.html"
+                templateUrl: "/views/tripsView.html",
+                //http://stackoverflow.com/a/28195942/413032 resolve:resolveController('tripsController')
             }).when("/editor/:tripId?",
             {
                 controller: "tripEditorController",

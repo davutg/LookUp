@@ -4,9 +4,32 @@
 }
 @section Scripts
 {    
-    <script src="~/js/jquery.maskedinput.min.js"></script>
+<script>
+    var onAppTripsInstalled = function ()
+    {    
+        require(['tripsController', 'tripsEditorController', 'maskedInput', 'moment', 'underscore'], function (t, te) {
+            var tagMainApp = jQuery("#app").first().get();
+            angular.bootstrap(tagMainApp, ['app']);
+            //require(['gmapsx'], function (g) {
+            //    requirejs(['gmapsUse'], function (x) {
+            //        require(['travelMap'], function (m) {
+
+            //        });
+            //    });
+            //});
+        })
+    }
+    var onSiteStart = function ()
+    {
+        require(['angularComponents']);
+    }
+</script>
+<script src="~/scripts/app.js"></script>
+@*<script src="~/scripts/lib/gmaps/gmaps.min.js"></script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAajnpD2EEBvAyjeFpfdIWKwMHrtH0fgCY"></script>
+    <script src="~/scripts/lib/travelmap/travelmap.min.js"></script>*@
+ <!--   <script src="~/js/jquery.maskedinput.min.js"></script>
     <script src="~/lib/moment/min/moment-with-locales.min.js"></script>
-    <!--script src="~/lib/moment/min/moment.min.js"></!--script-->
     <script src="~/lib/angular/angular.min.js"></script>
     <script src="~/lib/angular-route/angular-route.min.js"></script>
     <script src="~/js/simpleControls.js"></script>
@@ -15,10 +38,9 @@
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAajnpD2EEBvAyjeFpfdIWKwMHrtH0fgCY"></script>
     <script src="~/lib/travelmap/travelmap.min.js"></script>
     <script src="~/js/app.js"></script>
-    <script src="~/js/tripsController.js"></script>
-    <script src="~/js/tripEditorController.js"></script>
+    -->
 }
-<div class="col-md-5" ng-app="app">
+<div class="col-md-5" id="app">
  <div ng-view></div>
 </div>
 

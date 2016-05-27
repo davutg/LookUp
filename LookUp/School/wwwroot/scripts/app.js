@@ -12,29 +12,26 @@
         appTrips: 'scripts/js/app',
         templateController:'scripts/js/templateController',
         bootstrap: 'scripts/lib/bootstrap/dist/js/bootstrap.min',
-        angularComponents: "scripts/angularComponents"
+        angularComponents: "scripts/angularComponents",
+        tripsController:'scripts/js/tripsController',
+        tripsEditorController: 'scripts/js/tripEditorController',
+        maskedInput: 'scripts/js/jquery.maskedinput.min',
+        moment: 'scripts/lib/moment/min/moment-with-locales.min',
+        underscore: 'scripts/lib/underscore/underscore-min',
+        gmapsx: 'scripts/lib/gmaps/gmaps.min',
+        gmapsUse: 'https://maps.googleapis.com/maps/api/js?key=AIzaSyAajnpD2EEBvAyjeFpfdIWKwMHrtH0fgCY',
+        travelMap: 'scripts/lib/travelmap/travelmap.min'
     }
 });
+function callFn(fnc)
+{
+    if(fnc)
+    fnc();
+}
 
-requirejs(['jQuery'], function ($) {
-    console.info("jquery");
-    require(['angularMin'], function (angu) {
-        require(['angularRoute', 'simpleControls'], function (ro, si) {
-            console.log('simpleControls,angularRoute');
-            require(['appTrips'], function (app) {
-                console.log('appTrips');
-                require(['templateController'], function (template) {
-                    var tagMainApp = jQuery("#app").first().get();
-                    angular.bootstrap(tagMainApp, ['app']);
-                });
-
-            });
-        })
-    }
-);
- 
+requirejs(['jQuery'], function ($) {    
     requirejs(['site', 'bootstrap'], function (site, boot) {
-        console.info("site,bootstrap");
-
+        if (typeof (onSiteStart)!=='undefined')
+        callFn(onSiteStart)               
     });
 });
