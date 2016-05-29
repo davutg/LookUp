@@ -13,9 +13,8 @@
     "angular-route": "1.4.6",
     "travelmap": "1.0.2",
     "moment": "2.13.0",
-    "requirejs": "2.1.20"
-  },
-  "resolutions": {
-    "angular": "1.5.6-build.4796+sha.eebbca0"
+    "requirejs": "2.1.20",
+    "requirejs-plugins": "1.0.3",
+    "gmaps": "~0.4.24"
   }
 }

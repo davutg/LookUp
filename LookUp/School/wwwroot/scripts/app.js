@@ -1,5 +1,6 @@
 ﻿requirejs.config({
     baseUrl: "/",
+    waitSeconds:0,
     paths: {
         scripts: '../scripts',
         jQuery: 'scripts/lib/jquery/dist/jquery',
@@ -13,14 +14,33 @@
         templateController:'scripts/js/templateController',
         bootstrap: 'scripts/lib/bootstrap/dist/js/bootstrap.min',
         angularComponents: "scripts/angularComponents",
+        essentials: "scripts/essentials",
+        mapService:"scripts/mapService",
         tripsController:'scripts/js/tripsController',
         tripsEditorController: 'scripts/js/tripEditorController',
         maskedInput: 'scripts/js/jquery.maskedinput.min',
-        moment: 'scripts/lib/moment/min/moment-with-locales.min',
+        moment: ['https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.0.0/moment.min', 'scripts/lib/moment/min/moment.min'],
         underscore: 'scripts/lib/underscore/underscore-min',
-        gmapsx: 'scripts/lib/gmaps/gmaps.min',
+        //gmapsLib: 'scripts/lib/gmaps/gmaps.min',
+        "googlemaps!": "scripts/googlemapsapi",
+        googlemaps: "scripts/googlemapsapi",
+        gmapsLib: ['/scripts/lib/gmaps/gmaps'],
         gmapsUse: 'https://maps.googleapis.com/maps/api/js?key=AIzaSyAajnpD2EEBvAyjeFpfdIWKwMHrtH0fgCY',
-        travelMap: 'scripts/lib/travelmap/travelmap.min'
+        travelMap: 'scripts/lib/travelmap/travelmap.min',
+        async: 'scripts/lib/requirejs-plugins/src/async',
+        goog: 'scripts/lib/requirejs-plugins/src/goog',
+        propertyParser: 'scripts/lib/requirejs-plugins/src/propertyParser'
+    },
+    shim: {
+        gmaps: {
+            deps: ["googlemaps"],
+            exports: "GMaps"
+        }
+    },
+    config: {
+        moment: {
+            noGlobal: true
+        }
     }
 });
 function callFn(fnc)
@@ -29,9 +49,10 @@ function callFn(fnc)
     fnc();
 }
 
-requirejs(['jQuery'], function ($) {    
+requirejs(['jQuery'], function ($) {
     requirejs(['site', 'bootstrap'], function (site, boot) {
         if (typeof (onSiteStart)!=='undefined')
         callFn(onSiteStart)               
     });
 });
+

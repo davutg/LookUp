@@ -8,9 +8,15 @@
             return d;
         });
     }
+
     "use strict";    
     angular.module("app", ["simpleControls", "ngRoute"])
-    .config(function ($routeProvider) {
+    .config(function ($routeProvider, $locationProvider) {
+            //$locationProvider.html5Mode({
+            //    enabled: true,
+            //    requireBase: false
+            //});
+
         $routeProvider.when("/",
             {                
                 controller: "tripsController",

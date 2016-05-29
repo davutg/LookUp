@@ -4,20 +4,30 @@
 }
 @section Scripts
 {    
+<base href="/App/Trips#/">
 <script>
-    var onAppTripsInstalled = function ()
-    {    
-        require(['tripsController', 'tripsEditorController', 'maskedInput', 'moment', 'underscore'], function (t, te) {
-            var tagMainApp = jQuery("#app").first().get();
-            angular.bootstrap(tagMainApp, ['app']);
-            //require(['gmapsx'], function (g) {
-            //    requirejs(['gmapsUse'], function (x) {
-            //        require(['travelMap'], function (m) {
+    var onMapServiceInstalled = function ()
+    {
+        require(['tripsController', 'tripsEditorController'], function (t, te) {
+                    var tagMainApp = jQuery("#app").first().get();
+                    angular.bootstrap(tagMainApp, ['app']);
+                });
+    }
+    var onEssentialsLoaded = function ()
+    {
+        //goog!maps,3,other_params:key=AIzaSyAajnpD2EEBvAyjeFpfdIWKwMHrtH0fgCY
+        
+        //require(['async!https://maps.googleapis.com/maps/api/js?key=AIzaSyAajnpD2EEBvAyjeFpfdIWKwMHrtH0fgCY', function (x)
+        //{
+            
+                require(['mapService']);
+         
+        //}]);
+    }
 
-            //        });
-            //    });
-            //});
-        })
+    var onAppInstalled = function ()
+    {
+        require(['essentials']);      
     }
     var onSiteStart = function ()
     {
@@ -25,7 +35,7 @@
     }
 </script>
 <script src="~/scripts/app.js"></script>
-@*<script src="~/scripts/lib/gmaps/gmaps.min.js"></script>
+@*  <script src="~/scripts/lib/gmaps/gmaps.min.js"></script>
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAajnpD2EEBvAyjeFpfdIWKwMHrtH0fgCY"></script>
     <script src="~/scripts/lib/travelmap/travelmap.min.js"></script>*@
  <!--   <script src="~/js/jquery.maskedinput.min.js"></script>

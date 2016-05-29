@@ -955,6 +955,8 @@ var requirejs, require, define;
                     //If current map is not normalized, wait for that
                     //normalized name to load instead of continuing.
                     if (this.map.unnormalized) {
+                        //if (typeof (plugin) === 'undefined')
+                        //    return;
                         //Normalize the ID if the plugin allows it.
                         if (plugin.normalize) {
                             name = plugin.normalize(name, function (name) {
