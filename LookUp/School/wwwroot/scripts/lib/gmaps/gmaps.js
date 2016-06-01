@@ -4,7 +4,7 @@
     module.exports = factory();
   }
   else if(typeof define === 'function' && define.amd) {
-      define(['jquery', 'async!https://maps.google.com/maps/api/js?key=AIzaSyAajnpD2EEBvAyjeFpfdIWKwMHrtH0fgCY'], factory);
+      define(['jquery'], factory);
   }
   else {
     root.GMaps = factory();

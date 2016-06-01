@@ -27,6 +27,7 @@
         gmapsLib: ['/scripts/lib/gmaps/gmaps'],
         gmapsUse: 'https://maps.googleapis.com/maps/api/js?key=AIzaSyAajnpD2EEBvAyjeFpfdIWKwMHrtH0fgCY',
         travelMap: 'scripts/lib/travelmap/travelmap.min',
+        'async': 'scripts/lib/requirejs-plugins/src/async',
         async: 'scripts/lib/requirejs-plugins/src/async',
         goog: 'scripts/lib/requirejs-plugins/src/goog',
         propertyParser: 'scripts/lib/requirejs-plugins/src/propertyParser'
@@ -49,7 +50,7 @@ function callFn(fnc)
     fnc();
 }
 
-requirejs(['jQuery'], function ($) {
+requirejs(['jQuery', 'async'], function ($,asenkron) {
     requirejs(['site', 'bootstrap'], function (site, boot) {
         if (typeof (onSiteStart)!=='undefined')
         callFn(onSiteStart)               
