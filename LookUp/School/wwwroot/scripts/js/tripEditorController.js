@@ -11,6 +11,7 @@ function()
         vm.name = "Trip Editor";
         vm.Trip = {};
         vm.now = moment().toDate();
+        vm.isBusy=false;
         /*$("#date").mask("99/99/9999", { placeholder: "mm/dd/yyyy" });                
         var isNotifyingDisabled = false;
 
@@ -40,8 +41,12 @@ function()
         }
    
         vm.tripId = $routeParams.tripId;
-        $http.get("/api/Trip/" + vm.tripId + "?" + getTimeStamp()).then(succeeded);
-
+       
+        vm.getTrips = function ()
+        {
+            $http.get("/api/Trip/" + vm.tripId + "?" + getTimeStamp()).then(succeeded);
+        }
+        vm.getTrips();
         function succeeded(response) {        
             vm.Trip = response.data;
             _showMap(vm.Trip.destinations)          
@@ -54,6 +59,33 @@ function()
         {
             vm.Trip = response.data;
             $location.path("/");
+        }
+
+        //Add new Destination(stop)
+        vm.newTrip = {};
+        vm.addTrip = function () {
+            vm.isBusy=true;
+            $http.post("/api/trips/" + vm.Trip.id + "/stops",vm.newTrip)
+            .then(function (response) {
+                //success
+                vm.Trip.stops.push(response.data);
+                _showMap(vm.Trip.stops);
+                vm.newTrip = {};
+            }, function () {
+                //failure
+
+            }
+            ).finally(function () {
+                vm.isBusy = false;
+            });
+        }
+
+        vm.deleteStop = function (stopId)
+        {
+            $http.delete("/api/trips/" + vm.Trip.id + "/stops/" + stopId)
+            .then(function () {
+                vm.getTrips();
+            });
         }
     }
     

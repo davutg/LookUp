@@ -15,21 +15,21 @@ namespace School.Controllers.API
 {
     [Authorize]
     [Route("api/trips/{tripId}/stops")]
-    public class StopController:Controller
+    public class StopController : Controller
     {
         private ILogger<StopController> _logger;
         private IWorldRepository _repo;
 
-        public StopController(IWorldRepository repository,ILogger<StopController> logger)
+        public StopController(IWorldRepository repository, ILogger<StopController> logger)
         {
             _repo = repository;
-            _logger = logger;                    
+            _logger = logger;
         }
 
         [HttpGet]
         public JsonResult GetStops(int tripId)
         {
-            var trip=_repo.GetTripWithStopsByTripId(tripId,User.Identity.Name);
+            var trip = _repo.GetTripWithStopsByTripId(tripId, User.Identity.Name);
             if (trip == null)
                 return Json(null);
             return Json(Mapper.Map<IEnumerable<StopViewModel>>(trip.Destinations));
@@ -42,8 +42,8 @@ namespace School.Controllers.API
             {
                 try
                 {
-                    var stop = Mapper.Map<Stop>(stopVM);                    
-                    _repo.GetTripWithStopsByTripId(tripId,User.Identity.Name).Destinations.Add(stop);
+                    var stop = Mapper.Map<Stop>(stopVM);
+                    _repo.GetTripWithStopsByTripId(tripId, User.Identity.Name).Destinations.Add(stop);
                     if (_repo.SaveAll())
                     {
                         Response.StatusCode = StatusCodes.Status200OK;
@@ -62,9 +62,23 @@ namespace School.Controllers.API
             }
             else
             {
-                return Json(new { error=ModelState});
+                return Json(new { error = ModelState });
             }
         }
 
+        [HttpDelete("{id}")]
+        public JsonResult Delete(int tripId,int id)
+        {
+            try
+            {
+                _repo.DeleteStopById(id);
+                _repo.SaveAll();
+                return Json("OK");
+            }
+            catch (Exception e)
+            {
+                return Json("ERROR:" + e.Message??"");
+            }
+        }
     }
 }

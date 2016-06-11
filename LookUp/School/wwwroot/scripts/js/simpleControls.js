@@ -16,7 +16,7 @@
     function dcDateController($scope) {        
         var vm = this;
         var isNotifyingDisabled = false;
-        $(".dcDateControl").mask("99/99/9999", { placeholder: "mm/dd/yyyy" });        
+        $(".dcDateControl").mask("99/99/9999", { placeholder: "dd/mm/yyyy" });        
 
         $scope.$watch('modelx', function (newValue) {
             if (newValue) {
@@ -43,8 +43,9 @@
             controller:"dcDateController as vm",
             scope: {
                 modelx: "=modelx",
-                id: "=namex",
-                pattern: "=ptrn"
+                namex: "=namex",
+                idx:"=idx",
+                ptrn: "=ptrn"
             },
             restrict: "E",
             templateUrl: "/view/dcDateTemplate.html"

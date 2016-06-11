@@ -14,5 +14,6 @@ namespace School.DB
         void DeleteTripById(int id);
         void UpdateTrip(Trip trip);        
         Trip GetTripWithStopsByTripId(int tripId, string userName);
+        void DeleteStopById(int stopid);
     }
 }

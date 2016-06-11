@@ -1,24 +1,51 @@
 ﻿<div>
     <a class="btn fa fa-angle-double-left" href="#/"></a>
     <h1>{{vm.Trip.name}}</h1>
-        <form class="form-inline" role="form">
-            <div class="form-group">
-                <label>Location</label>
-                <input class="form-control" ng-model="vm.Trip.name" required maxlength="255">
-            </div>
-            <div class="form-group">
-                <label>Date</label>
-                <dc-date modelx="vm.Trip.created" namex="tripDateInput" ptrn="dd.MM.yyyy" required></dc-date>                
-                <!--input id="date" ng-model="vm.tripDateInput" /-->
-                <!--input name="tripdateInput" type="date" id="tripDateInput" class="form-control" ng-model="vm.tripDateInput" required ng-pattern="dd.mm.yyyy" /-->                
-            </div>                        
-                <input type="button" ng-click="vm.updateTrip()" class="btn btn-primary btn-sm" value="Update" />          
-        </form>    
-        
+    <form class="form-inline" role="form">
+        <div class="form-group">
+            <label>Trip Name</label>
+            <input class="form-control" ng-model="vm.Trip.name" required maxlength="255">
+        </div>
+        <div class="form-group">
+            <label>Date</label>
+            <dc-date modelx="vm.Trip.created" idx="tripDateInput0" namex="tripDateInput" ptrn="dd.MM.yyyy" required></dc-date>
+            <!--input id="date" ng-model="vm.tripDateInput" /-->
+            <!--input name="tripdateInput" type="date" id="tripDateInput" class="form-control" ng-model="vm.tripDateInput" required ng-pattern="dd.mm.yyyy" /-->
+        </div>
+        <input type="button" ng-click="vm.updateTrip()" class="btn btn-primary btn-sm" value="Update" />
+    </form>
+
     <ul class="list-group list-unstyled">
         <li class="list-group-item list-group-item-info" ng-repeat="stop in vm.Trip.destinations">
             <span class="text-primary text-capitalize">{{stop.name}}</span><br /> ({{stop.arrival}})
+            <i class="btn fa fa-trash" ng-click="vm.deleteStop(stop.id)"></i>            
         </li>
     </ul>
-    {{vm.zone}}    
+    {{vm.zone}}
+    <form novalidate name="newDestinationForm" ng-submit="vm.addTrip()">
+        <div class="form-group">
+            <label>Location</label>
+            <input name="location" id="location" class="form-control" ng-model="vm.newTrip.name" required maxlength="255" />
+            <div class="text-danger"
+                 ng-if="newDestinationForm.location.$dirty"
+                 ng-show="newDestinationForm.location.$error.required"
+                 required>
+                name is required
+            </div>
+            <div class="form-group">
+                <label>Date</label>
+                <dc-date modelx="vm.newTrip.arrival" idx="tripDateInput" namex="tripDateInput" ptrn="dd.mm.yyyy" required></dc-date>
+                <div class="text-danger"
+                     ng-if="newDestinationForm.location.$dirty"
+                     ng-show="newDestinationForm.location.$error.required"
+                     required>
+                    name is required
+                </div>
+            </div>
+            <div class="form-group">
+                <input type="submit" class="btn btn-success" ng-disabled="newDestinationForm.$invalid" />
+            </div>
+        </div>
+    </form>
+
 </div>

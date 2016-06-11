@@ -76,5 +76,12 @@ namespace School.DB
         {
             return _context.Trips.Where(w => w.UserName == userName);
         }
+
+        public void DeleteStopById(int stopid)
+        {
+            var stop=_context.Stops.Where(w => w.Id == stopid).FirstOrDefault();
+            if (stop != null)
+                _context.Stops.Remove(stop);
+        }
     }
 }
