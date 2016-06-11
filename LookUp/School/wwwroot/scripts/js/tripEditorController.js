@@ -62,15 +62,17 @@ function()
         }
 
         //Add new Destination(stop)
-        vm.newTrip = {};
-        vm.addTrip = function () {
+        vm.newTrip = {};        
+        vm.addTrip = function (form) {
             vm.isBusy=true;
             $http.post("/api/trips/" + vm.Trip.id + "/stops",vm.newTrip)
             .then(function (response) {
                 //success
-                vm.Trip.stops.push(response.data);
-                _showMap(vm.Trip.stops);
+                vm.Trip.destinations.push(response.data);
+                _showMap(vm.Trip.destinations);
                 vm.newTrip = {};
+                form.$setPristine();
+                form.$setUntouched();
             }, function () {
                 //failure
 

@@ -25,6 +25,8 @@
                     var formatted = moment(newValue).format("DD/MM/YYYY");
                     vm.tripDateInput = formatted;    //$filter('date')(newValue, 'dd.MM.yyyy');
                 }
+            } else {
+                vm.tripDateInput = newValue;
             }
         });
         $scope.$watch('vm.tripDateInput', function (newValue) {
@@ -44,10 +46,11 @@
             scope: {
                 modelx: "=modelx",
                 namex: "=namex",
-                idx:"=idx",
+                idx:"=idName",
                 ptrn: "=ptrn"
             },
             restrict: "E",
+            replace: true,
             templateUrl: "/view/dcDateTemplate.html"
         };
     }
