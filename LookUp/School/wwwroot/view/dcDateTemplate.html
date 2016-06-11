@@ -1,6 +1,5 @@
 ﻿<input 
-       id="idx"      
-       name="namex" 
        class="form-control dcDateControl" 
        ng-model="vm.tripDateInput"
+       ng-model-options="{ updateOn: 'change keyup' }"
        required ng-pattern="ptrn" />

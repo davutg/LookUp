@@ -15,6 +15,7 @@
     module.controller("dcDateController", dcDateController)
     function dcDateController($scope) {        
         var vm = this;
+        vm.tripDateInput = {};
         var isNotifyingDisabled = false;
         $(".dcDateControl").mask("99/99/9999", { placeholder: "dd/mm/yyyy" });        
 
@@ -45,8 +46,8 @@
             controller:"dcDateController as vm",
             scope: {
                 modelx: "=modelx",
-                namex: "=namex",
-                idx:"=idName",
+//                namex: "=namex",
+//                idx:"=idName",
                 ptrn: "=ptrn"
             },
             restrict: "E",
@@ -54,4 +55,34 @@
             templateUrl: "/view/dcDateTemplate.html"
         };
     }
+
+    //Update on enter directive Attiribute A update-on-enter
+   module.directive('updateOnEnter', function () {
+        return {
+            restrict: 'A',
+            require: 'ngModel',
+            link: function (scope, element, attrs, ctrl) {
+                element.on("keyup", function (ev) {
+                    if (ev.keyCode == 13) {
+                        ctrl.$validate();
+                        scope.$apply(ctrl.$setTouched);
+                    }
+                });
+            }
+        }
+   });
+
+    //Update on keyup directive Attiribute A update-on-keyup
+   module.directive('updateOnKeyup', function () {
+       return {
+           restrict: 'A',
+           require: 'ngModel',
+           link: function (scope, element, attrs, ctrl) {
+               element.on("keyup", function (ev) {
+                       ctrl.$validate();
+                       scope.$apply(ctrl.$setTouched);                   
+               });
+           }
+       }
+   });
 })();
