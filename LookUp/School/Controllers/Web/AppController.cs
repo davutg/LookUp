@@ -52,6 +52,11 @@ namespace School.Controllers.Web
 
         }
 
+        public IActionResult TestTemplate()
+        {
+            return View();
+        }
+
         [HttpPost]
         public IActionResult Contact(ContactViewModel vm)
         {

@@ -38,6 +38,17 @@
                 isNotifyingDisabled = false;
             }
         });
+
+        vm.checkValidity = function () {
+            var d = new moment.utc(vm.tripDateInput, 'DD/MM/YYYY');
+            if (d.isValid() == true) {
+                var d = new Date(vm.tripDateInput)
+                var formatted = moment(vm.tripDateInput).format("DD/MM/YYYY");
+                vm.tripDateInput = formatted;
+            } else {
+
+            }
+        }
     }
 
     module.directive("dcDate", dateControl);
@@ -78,9 +89,20 @@
            restrict: 'A',
            require: 'ngModel',
            link: function (scope, element, attrs, ctrl) {
-               element.on("keyup", function (ev) {
+               element.on("blur keyup change", function (ev) {
+                   if (!ctrl.$viewValue)
+                       return;
+                   var m = moment(ctrl.$viewValue, 'DD.MM.YYYY');
+                   if (m) {
+                       var isValid = m.isValid();
+                       console.info(ctrl.$viewValue + " " + isValid);
+                       ctrl.$setValidity("dcDate", isValid);
                        ctrl.$validate();
-                       scope.$apply(ctrl.$setTouched);                   
+                       scope.$apply(ctrl.$setTouched);
+                       scope.$apply(function () {
+                           scope.$eval(attrs.updateOnKeyup);
+                       });
+                   }
                });
            }
        }

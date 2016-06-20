@@ -31,6 +31,7 @@ namespace School
         public static IConfigurationRoot AppConfiguration;
         public Startup(IApplicationEnvironment env)
         {
+
             var builder = new ConfigurationBuilder()                
                 .SetBasePath(env.ApplicationBasePath)
                 .AddJsonFile("config.json")

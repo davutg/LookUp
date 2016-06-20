@@ -34,7 +34,10 @@
             </div>
             <div class="form-group">
                 <label>Date</label>
-                <dc-date update-on-keyup modelx="vm.newTrip.arrival" id="tripDateInput" name="tripDateInput" ptrn="dd.mm.yyyy" required></dc-date>
+                <dc-date update-on-keyup modelx="vm.newTrip.arrival" 
+                         id="tripDateInput" name="tripDateInput" 
+                         ptrn="dd.mm.yyyy" required>
+                </dc-date>
                 <div class="text-danger"
                      ng-if="newDestinationForm.tripDateInput.$dirty"
                      ng-show="newDestinationForm.tripDateInput.$error.required"

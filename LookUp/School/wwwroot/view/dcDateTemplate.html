@@ -1,5 +1,5 @@
-﻿<input 
+﻿<input ng-keyup="vm.checkValidity()"
        class="form-control dcDateControl" 
        ng-model="vm.tripDateInput"
-       ng-model-options="{ updateOn: 'change keyup' }"
+       ng-model-options="{ updateOn: 'blur change keyup' }"
        required ng-pattern="ptrn" />

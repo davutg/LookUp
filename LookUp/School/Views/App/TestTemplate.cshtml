@@ -1,0 +1,62 @@
+﻿@{
+    ViewBag.Title = "Test Template Test";
+}
+@section Scripts
+{    
+    <link rel="stylesheet" type="text/css" href="http://angular-ui.github.io/ui-grid/css/ng-grid.css" />
+    <script src="~/scripts/lib/jquery/dist/jquery.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.0.2/angular.min.js"></script>
+    <script type="text/javascript" src="http://angular-ui.github.io/ui-grid/lib/ng-grid.debug.js"></script>
+    <script type="text/javascript" src="~/scripts/js/gridOptions.js"></script>
+    <link rel="stylesheet" href="http://www.w3schools.com/lib/w3.css">
+    <style>
+        .gridStyle {    
+                border: 1px solid rgb(212,212,212);    
+                min-height:480px;
+                }
+    </style>
+}
+
+
+
+<div ng-app="myApp">
+    <h1 style="text-align:right"><i class="fa fa-cube"></i>ABX 60</h1>    
+<div class="col-md-4 ">
+    <h2><i class="fa fa-flask"></i>Tubes</h2>  
+    <ul class="w3-ul">
+        <li class="w3-padding-16 w3-card-4">
+            <div class="w3-row w3-container">
+                <div class="w3-quarter w3-container"><img src="~/img/male.png" class="w3-left w3-circle w3-margin-right" style="width:60px"></div>
+                <div class="w3-half w3-container"> 
+                    <span class="w3-xlarge">Mike</span><br>
+                    <span>Web Designer</span>
+                </div>
+                <div class="w3-quarter w3-container">
+                    <span onclick="this.parentElement.style.display='none'" style="text-align:center"
+                          class="btn fa fa-close w3-padding w3-margin-right w3-medium"></span>
+                    <span style="color:green;text-align:center" class="btn fa fa-paper-plane-o w3-padding w3-margin-right w3-medium w3-xlarge"></span>
+                </div>
+            </div>
+
+        </li>
+        <li class="w3-padding-16 w3-border" >
+             <div class="w3-row w3-container">
+                 <div class="w3-quarter w3-container">
+                     <img src="~/img/famale.png" class="w3-left w3-circle w3-margin-right" style="width:60px">
+                 </div>
+                 <div class="w3-half w3-container">
+                     <span class="w3-xlarge">Jill</span><br>
+                     <span>Support</span>
+                 </div>
+                 <div class="w3-quarter w3-container">
+                        ...
+                 </div>
+             </div>
+        </li>      
+    </ul> 
+</div>
+<div ng-controller="MyCtrl" class="col-md-8" style="padding:5px">
+    <h2><i class="fa fa-bar-chart"></i>Tests</h2>
+    <div class="gridStyle" ng-grid="gridOptions"></div>
+</div>
+</div>
